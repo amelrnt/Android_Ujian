@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_gravity="bottom"
+    android:background="@drawable/bgstart"
+    android:gravity="bottom"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.15"
+        android:gravity="top|right"
+        android:orientation="vertical" >
+
+    </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/buttonstart"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.01"
+        android:background="@android:color/transparent"
+        android:src="@drawable/startbtn" />
+
+    <TextView
+        android:id="@+id/textViewAbout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.00"
+        android:gravity="center"
+        android:hint="#000000"
+        android:onClick="#000000"
+        android:paddingBottom="7dp"
+        android:text="CLICK HERE FOR MORE INFORMATION"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#ffffff"
+        android:textColorHint="#000000"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+
+</LinearLayout>

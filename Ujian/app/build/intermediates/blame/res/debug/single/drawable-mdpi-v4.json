@@ -1,0 +1,110 @@
+[
+    {
+        "merged": "C:\\Users\\freda\\AndroidStudioProjects\\ujian2\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4\\back2.png",
+        "source": "C:\\Users\\freda\\AndroidStudioProjects\\ujian2\\app\\src\\main\\res\\drawable-mdpi\\back2.png"
+    },
+    {
+        "merged": "C:\\Users\\freda\\AndroidStudioProjects\\ujian2\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4\\back.png",
+        "source": "C:\\Users\\freda\\AndroidStudioProjects\\ujian2\\app\\src\\main\\res\\drawable-mdpi\\back.png"
+    },
+    {
+        "merged": "C:\\Users\\freda\\AndroidStudioProjects\\ujian2\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4\\bgabout.png",
+        "source": "C:\\Users\\freda\\AndroidStudioProjects\\ujian2\\app\\src\\main\\res\\drawable-mdpi\\bgabout.png"
+    },
+    {
+        "merged": "C:\\Users\\freda\\AndroidStudioProjects\\ujian2\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4\\finish_pressed.png",
+        "source": "C:\\Users\\freda\\AndroidStudioProjects\\ujian2\\app\\src\\main\\res\\drawable-mdpi\\finish_pressed.png"
+    },
+    {
+        "merged": "C:\\Users\\freda\\AndroidStudioProjects\\ujian2\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4\\bgsc1.png",
+        "source": "C:\\Users\\freda\\AndroidStudioProjects\\ujian2\\app\\src\\main\\res\\drawable-mdpi\\bgsc1.png"
+    },
+    {
+        "merged": "C:\\Users\\freda\\AndroidStudioProjects\\ujian2\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4\\kiri_pressed.png",
+        "source": "C:\\Users\\freda\\AndroidStudioProjects\\ujian2\\app\\src\\main\\res\\drawable-mdpi\\kiri_pressed.png"
+    },
+    {
+        "merged": "C:\\Users\\freda\\AndroidStudioProjects\\ujian2\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4\\bg.png",
+        "source": "C:\\Users\\freda\\AndroidStudioProjects\\ujian2\\app\\src\\main\\res\\drawable-mdpi\\bg.png"
+    },
+    {
+        "merged": "C:\\Users\\freda\\AndroidStudioProjects\\ujian2\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4\\pilihanmenu2.png",
+        "source": "C:\\Users\\freda\\AndroidStudioProjects\\ujian2\\app\\src\\main\\res\\drawable-mdpi\\pilihanmenu2.png"
+    },
+    {
+        "merged": "C:\\Users\\freda\\AndroidStudioProjects\\ujian2\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4\\bgstart.png",
+        "source": "C:\\Users\\freda\\AndroidStudioProjects\\ujian2\\app\\src\\main\\res\\drawable-mdpi\\bgstart.png"
+    },
+    {
+        "merged": "C:\\Users\\freda\\AndroidStudioProjects\\ujian2\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4\\kanan_pressed.png",
+        "source": "C:\\Users\\freda\\AndroidStudioProjects\\ujian2\\app\\src\\main\\res\\drawable-mdpi\\kanan_pressed.png"
+    },
+    {
+        "merged": "C:\\Users\\freda\\AndroidStudioProjects\\ujian2\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4\\start.png",
+        "source": "C:\\Users\\freda\\AndroidStudioProjects\\ujian2\\app\\src\\main\\res\\drawable-mdpi\\start.png"
+    },
+    {
+        "merged": "C:\\Users\\freda\\AndroidStudioProjects\\ujian2\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4\\bgsc4.png",
+        "source": "C:\\Users\\freda\\AndroidStudioProjects\\ujian2\\app\\src\\main\\res\\drawable-mdpi\\bgsc4.png"
+    },
+    {
+        "merged": "C:\\Users\\freda\\AndroidStudioProjects\\ujian2\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4\\ic_launcher.png",
+        "source": "C:\\Users\\freda\\AndroidStudioProjects\\ujian2\\app\\src\\main\\res\\drawable-mdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\freda\\AndroidStudioProjects\\ujian2\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4\\kiri_disabled.png",
+        "source": "C:\\Users\\freda\\AndroidStudioProjects\\ujian2\\app\\src\\main\\res\\drawable-mdpi\\kiri_disabled.png"
+    },
+    {
+        "merged": "C:\\Users\\freda\\AndroidStudioProjects\\ujian2\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4\\kanan.png",
+        "source": "C:\\Users\\freda\\AndroidStudioProjects\\ujian2\\app\\src\\main\\res\\drawable-mdpi\\kanan.png"
+    },
+    {
+        "merged": "C:\\Users\\freda\\AndroidStudioProjects\\ujian2\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4\\kanan_disabled.png",
+        "source": "C:\\Users\\freda\\AndroidStudioProjects\\ujian2\\app\\src\\main\\res\\drawable-mdpi\\kanan_disabled.png"
+    },
+    {
+        "merged": "C:\\Users\\freda\\AndroidStudioProjects\\ujian2\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4\\step.png",
+        "source": "C:\\Users\\freda\\AndroidStudioProjects\\ujian2\\app\\src\\main\\res\\drawable-mdpi\\step.png"
+    },
+    {
+        "merged": "C:\\Users\\freda\\AndroidStudioProjects\\ujian2\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4\\start_pressed.png",
+        "source": "C:\\Users\\freda\\AndroidStudioProjects\\ujian2\\app\\src\\main\\res\\drawable-mdpi\\start_pressed.png"
+    },
+    {
+        "merged": "C:\\Users\\freda\\AndroidStudioProjects\\ujian2\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4\\finish_disabled.png",
+        "source": "C:\\Users\\freda\\AndroidStudioProjects\\ujian2\\app\\src\\main\\res\\drawable-mdpi\\finish_disabled.png"
+    },
+    {
+        "merged": "C:\\Users\\freda\\AndroidStudioProjects\\ujian2\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4\\bgopen.png",
+        "source": "C:\\Users\\freda\\AndroidStudioProjects\\ujian2\\app\\src\\main\\res\\drawable-mdpi\\bgopen.png"
+    },
+    {
+        "merged": "C:\\Users\\freda\\AndroidStudioProjects\\ujian2\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4\\bgsc3.png",
+        "source": "C:\\Users\\freda\\AndroidStudioProjects\\ujian2\\app\\src\\main\\res\\drawable-mdpi\\bgsc3.png"
+    },
+    {
+        "merged": "C:\\Users\\freda\\AndroidStudioProjects\\ujian2\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4\\finish.png",
+        "source": "C:\\Users\\freda\\AndroidStudioProjects\\ujian2\\app\\src\\main\\res\\drawable-mdpi\\finish.png"
+    },
+    {
+        "merged": "C:\\Users\\freda\\AndroidStudioProjects\\ujian2\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4\\kiri.png",
+        "source": "C:\\Users\\freda\\AndroidStudioProjects\\ujian2\\app\\src\\main\\res\\drawable-mdpi\\kiri.png"
+    },
+    {
+        "merged": "C:\\Users\\freda\\AndroidStudioProjects\\ujian2\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4\\bgsc2.png",
+        "source": "C:\\Users\\freda\\AndroidStudioProjects\\ujian2\\app\\src\\main\\res\\drawable-mdpi\\bgsc2.png"
+    },
+    {
+        "merged": "C:\\Users\\freda\\AndroidStudioProjects\\ujian2\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4\\bgsc5.png",
+        "source": "C:\\Users\\freda\\AndroidStudioProjects\\ujian2\\app\\src\\main\\res\\drawable-mdpi\\bgsc5.png"
+    },
+    {
+        "merged": "C:\\Users\\freda\\AndroidStudioProjects\\ujian2\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4\\tentang_kami.jpg",
+        "source": "C:\\Users\\freda\\AndroidStudioProjects\\ujian2\\app\\src\\main\\res\\drawable-mdpi\\tentang_kami.jpg"
+    },
+    {
+        "merged": "C:\\Users\\freda\\AndroidStudioProjects\\ujian2\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4\\pilihanmenu1.png",
+        "source": "C:\\Users\\freda\\AndroidStudioProjects\\ujian2\\app\\src\\main\\res\\drawable-mdpi\\pilihanmenu1.png"
+    }
+]

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="C:\Users\freda\AndroidStudioProjects\ujian2\app\libs\ion-2.1.6.jar"
+        jumboMode="true"
+        revision="25.0.2"
+        sha1="cd55ef3ba6d8b62838b658ba2507b019dffb3a08">
+        <dex dex="C:\Users\freda\AndroidStudioProjects\ujian2\app\build\intermediates\pre-dexed\debug\ion-2.1.6_7e3b6091b28ce5f5a216c7760d3b00ec69fbfa17.jar" />
+    </item>
+    <item
+        jar="C:\Users\freda\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-v4\18.0.0\support-v4-18.0.0.jar"
+        jumboMode="true"
+        revision="25.0.2"
+        sha1="44ec51e9d395a47aab135e5e1b556c0007442156">
+        <dex dex="C:\Users\freda\AndroidStudioProjects\ujian2\app\build\intermediates\pre-dexed\debug\support-v4-18.0.0_946d6686c52cec01db91a0007418c5356fe6187f.jar" />
+    </item>
+    <item
+        jar="C:\Users\freda\AndroidStudioProjects\ujian2\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        revision="25.0.2"
+        sha1="9c920d5d54fffb56f506d612848a59608cf56d30">
+        <dex dex="C:\Users\freda\AndroidStudioProjects\ujian2\app\build\intermediates\pre-dexed\debug\instant-run_cfa22c2a0b105e69814079fd3523321075e85abd.jar" />
+    </item>
+    <item
+        jar="C:\Users\freda\AndroidStudioProjects\ujian2\app\libs\android-sqlite-asset-helper.jar"
+        jumboMode="true"
+        revision="25.0.2"
+        sha1="20f039a3336c18f93cfddfa1a49ce91a55361c40">
+        <dex dex="C:\Users\freda\AndroidStudioProjects\ujian2\app\build\intermediates\pre-dexed\debug\android-sqlite-asset-helper_42bc9650c00c26bc667601ce7819b5d470e411c4.jar" />
+    </item>
+    <item
+        jar="C:\Users\freda\AndroidStudioProjects\ujian2\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        revision="25.0.2"
+        sha1="0b2cd3ae0b50c05f4b21474b7cc0eb9589ef5bfa">
+        <dex dex="C:\Users\freda\AndroidStudioProjects\ujian2\app\build\intermediates\pre-dexed\debug\instant-run-bootstrap_a09547f9462da65a4aa18c5a8d3f61b5e1cace49.jar" />
+    </item>
+    <item
+        jar="C:\Users\freda\AndroidStudioProjects\ujian2\app\libs\androidasync-2.1.6.jar"
+        jumboMode="true"
+        revision="25.0.2"
+        sha1="e3d5f6ab2003e31f2cf5ea61b4731a21e9517935">
+        <dex dex="C:\Users\freda\AndroidStudioProjects\ujian2\app\build\intermediates\pre-dexed\debug\androidasync-2.1.6_56acab4e9e5d3d4cee2bcc43c7df94f4fbbe84ea.jar" />
+    </item>
+
+</items>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:background="@drawable/back2" >
+ 	<LinearLayout 
+    	android:orientation="vertical" 
+    	android:id="@+id/linearLayout1" 
+    	android:layout_height="match_parent" 
+    	android:layout_width="match_parent"
+    	android:layout_gravity="top">
+    
+    <TextView
+        android:id="@+id/txtSelectedNomor"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:gravity="center_horizontal"
+        android:text="" />
+    
+     <TextView
+        android:id="@+id/txtSelectedBaris1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:text="" />
+      
+       
+      <RadioGroup
+        android:id="@+id/grouppilihan"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" 
+		android:layout_marginLeft="10dp"
+		android:layout_marginRight="10dp">
+		
+        <RadioButton
+            android:id="@+id/rdbtnjawaba"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="" 
+			android:checked="true"/>
+        <RadioButton
+            android:id="@+id/rdbtnjawabb"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="" 
+        	android:checked="false"/>
+         <RadioButton
+            android:id="@+id/rdbtnjawabc"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="" 
+        	android:checked="false"/>
+         <RadioButton
+            android:id="@+id/rdbtnjawabd"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="" 
+            android:checked="false"/>
+    </RadioGroup>
+  
+ 	<LinearLayout 
+    	android:orientation="horizontal" 
+    	android:id="@+id/linearLayout1" 
+    	android:layout_height="match_parent" 
+    	android:layout_width="match_parent"
+    	android:gravity="center_horizontal"
+    	android:layout_gravity="bottom">
+   
+     <ImageButton
+        android:id="@+id/buttonstep"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/step"/> 
+    
+	</LinearLayout>
+      </LinearLayout>
+</LinearLayout>
