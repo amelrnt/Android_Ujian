@@ -10,14 +10,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class lihatmateri extends Activity {
+import com.wenchao.jsql.DBHelper;
+
+public class LihatmateriActivity extends Activity {
 
     private Cursor cursor;
     DBHelper dbHelper;
     TextView text1;
     Button btn1;
     final Context context = this;
-    Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +55,7 @@ public class lihatmateri extends Activity {
         public void onClick(View view) {
             switch (view.getId()) {
                 case R.id.btnkembali:
-                    intent = new Intent(context.getApplicationContext(), pilihaction.class);
+                    Intent intent = new Intent(context.getApplicationContext(), pilihaction.class);
                     startActivity(intent);
                     break;
 

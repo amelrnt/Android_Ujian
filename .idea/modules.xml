@@ -3,6 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Android_Ujian.iml" filepath="$PROJECT_DIR$/.idea/modules/Android_Ujian.iml" group="Android_Ujian" />
+      <module fileurl="file://$PROJECT_DIR$/app/Android_Ujian-app.iml" filepath="$PROJECT_DIR$/app/Android_Ujian-app.iml" group="Android_Ujian/app" />
+      <module fileurl="file://$PROJECT_DIR$/Project Android-Android_Ujian.iml" filepath="$PROJECT_DIR$/Project Android-Android_Ujian.iml" group="Android_Ujian" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/app.iml" group="Android_Ujian/app" />
     </modules>
   </component>

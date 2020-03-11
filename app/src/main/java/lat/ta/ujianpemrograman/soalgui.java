@@ -24,12 +24,17 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.wenchao.jsql.DBHelper;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+
+import Model.ListPaketSoal;
+import Model.Soal1;
 
 public class soalgui extends Activity{
 

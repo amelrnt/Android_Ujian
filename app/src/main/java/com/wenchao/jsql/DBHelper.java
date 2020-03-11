@@ -1,4 +1,4 @@
-package lat.ta.ujianpemrograman;
+package com.wenchao.jsql;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -14,6 +14,8 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
+
+import Model.Soal1;
 
 public class DBHelper extends SQLiteOpenHelper {
 

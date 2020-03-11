@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import Model.ListPaketSoal;
+
 public class pilihpelajaran extends Activity {
 Button btn1, btn2, btn3, btn4, btn5, btn6, btn7;
     final Context context = this;

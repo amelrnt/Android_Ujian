@@ -1,4 +1,4 @@
-package lat.ta.ujianpemrograman;
+package com.wenchao.jsql;
 
 import android.content.Context;
 import android.util.Log;

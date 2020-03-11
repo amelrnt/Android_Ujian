@@ -10,6 +10,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.wenchao.jsql.DBHelper;
+
+import Model.ListPaketSoal;
+
 public class LihatNilaiActivity extends Activity {
     protected Cursor cursor;
     DBHelper dbHelper;

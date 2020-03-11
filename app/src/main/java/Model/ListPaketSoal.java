@@ -1,4 +1,4 @@
-package lat.ta.ujianpemrograman;
+package Model;
 
 
 import android.app.Activity;
@@ -16,8 +16,13 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 
+import com.wenchao.jsql.DBHelper;
+
 import java.io.IOException;
 
+import lat.ta.ujianpemrograman.MainActivity;
+import lat.ta.ujianpemrograman.R;
+import lat.ta.ujianpemrograman.pilihaction;
 
 
 public class ListPaketSoal extends Activity {
@@ -42,7 +47,7 @@ public class ListPaketSoal extends Activity {
         	requestWindowFeature(Window.FEATURE_NO_TITLE);
         	getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         	
-        	setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        	setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
                        
         setContentView(R.layout.activity_listpaket);
         listContent = (ListView) findViewById(R.id.listSoal); 

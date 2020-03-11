@@ -23,6 +23,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.wenchao.jsql.DBHelper;
+import com.wenchao.jsql.JSONParser;
 import com.wenchao.jsql.JSQLite;
 
 import org.apache.http.NameValuePair;
@@ -33,6 +35,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+import Model.ListPaketSoal;
+import Model.Soal1;
 
 @SuppressLint("ShowToast") public class MainActivity extends Activity {
 	private static final ProgressBar ProgressBar = null;

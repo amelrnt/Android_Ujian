@@ -1,4 +1,4 @@
-package lat.ta.ujianpemrograman;
+package Model;
 
 
 import android.app.Activity;

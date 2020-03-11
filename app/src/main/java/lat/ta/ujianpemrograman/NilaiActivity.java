@@ -13,6 +13,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.wenchao.jsql.DBHelper;
+
 public class NilaiActivity extends Activity {
     String[] daftar;
     ListView ListView01;

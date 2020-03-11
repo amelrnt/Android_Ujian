@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class pilihaction extends Activity {
+public class PilihactionActivity extends Activity {
 
     Button btn1, btn2, btn3;
     final Context context = this;

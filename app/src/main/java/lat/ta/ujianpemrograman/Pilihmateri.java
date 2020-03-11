@@ -7,12 +7,13 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+
+import com.wenchao.jsql.DBHelper;
 
 public class Pilihmateri extends Activity {
 
@@ -56,7 +57,7 @@ public class Pilihmateri extends Activity {
                     public void onClick(DialogInterface dialog, int item) {
                         switch(item){
                             case 0 :
-                                Intent i = new Intent(getApplicationContext(), lihatmateri.class);
+                                Intent i = new Intent(getApplicationContext(), LihatmateriActivity.class);
                                 i.putExtra("nma_matkul", selection);
                                 startActivity(i);
                                 break;

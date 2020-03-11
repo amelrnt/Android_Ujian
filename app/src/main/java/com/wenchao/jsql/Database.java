@@ -1,4 +1,4 @@
-package lat.ta.ujianpemrograman;
+package com.wenchao.jsql;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -7,7 +7,9 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.ArrayList;
 import java.util.List;
- 
+
+import Model.Soal1;
+
 public class Database extends SQLiteOpenHelper {
     final static String DB_NAME = "db_kuis.db";
  
@@ -20,9 +22,6 @@ public class Database extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         String sql = "CREATE TABLE IF NOT EXISTS tbl_soal(id INTEGER PRIMARY KEY AUTOINCREMENT, soal TEXT, pil_a TEXT, pil_b TEXT, pil_c TEXT,pil_d TEXT,jwban INTEGER, img BLOB,tipe INTEGER,grup INTEGER)";
         db.execSQL(sql);
-        
-            
-        
     }
    
     
