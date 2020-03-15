@@ -55,8 +55,8 @@ public class LihatmateriActivity extends Activity {
         public void onClick(View view) {
             switch (view.getId()) {
                 case R.id.btnkembali:
-                    Intent intent = new Intent(context.getApplicationContext(), pilihaction.class);
-                    startActivity(intent);
+//                    Intent intent = new Intent(context.getApplicationContext(), pilihaction.class);
+//                    startActivity(intent);
                     break;
 
             }

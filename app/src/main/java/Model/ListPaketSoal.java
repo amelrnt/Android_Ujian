@@ -22,7 +22,6 @@ import java.io.IOException;
 
 import lat.ta.ujianpemrograman.MainActivity;
 import lat.ta.ujianpemrograman.R;
-import lat.ta.ujianpemrograman.pilihaction;
 
 
 public class ListPaketSoal extends Activity {
@@ -65,16 +64,16 @@ public class ListPaketSoal extends Activity {
     	SimpleCursorAdapter paketAdapter = new SimpleCursorAdapter(this, R.layout.activity_listrow, paketCursor, from, to);  
     	listContent.setAdapter(paketAdapter);	
     	
-    	listContent.setOnItemClickListener(new OnItemClickListener() {
-             public void onItemClick(AdapterView<?> parent, View view, int position,long id) {
-                    //GET ID FROM DATABASE
-            	 //Toast.makeText(getBaseContext(), id + "", Toast.LENGTH_LONG).show();
-            	 paket =  Long.toString(id);
-            	 intent = new Intent(context, pilihaction.class);
-            	 startActivity(intent);
-                    
-             }
-         });
+//    	listContent.setOnItemClickListener(new OnItemClickListener() {
+//             public void onItemClick(AdapterView<?> parent, View view, int position,long id) {
+//                    //GET ID FROM DATABASE
+//            	 //Toast.makeText(getBaseContext(), id + "", Toast.LENGTH_LONG).show();
+//            	 paket =  Long.toString(id);
+//            	 intent = new Intent(context, pilihaction.class);
+//            	 startActivity(intent);
+//
+//             }
+//         });
     	
     }
     

@@ -4,10 +4,6 @@ android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
 
-    packagingOptions {
-        exclude 'META-INF/DEPENDENCIES'
-    }
-
     defaultConfig {
         applicationId "lat.ta.ujianpemrograman"
         minSdkVersion 16
@@ -19,6 +15,10 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
         }
+    }
+    compileOptions {
+        sourceCompatibility = 1.8
+        targetCompatibility = 1.8
     }
 }
 
@@ -33,14 +33,13 @@ dependencies {
      */
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    /**
-     *
-     * Add HttpClient Library
-     * TODO : IGNORE OR REPLACE OTHER LIBRARY
-     * Library ini sudah tidak di support oleh google. dan
-     * disarankan untuk menggunakan OKHttpClient atau
-     * Library Networking yang lebih modern.
-     *
-     */
-    implementation 'org.apache.httpcomponents:httpclient:4.5.6'
+    implementation 'com.squareup.retrofit2:retrofit:2.7.2'
+    implementation 'com.squareup.retrofit2:converter-gson:2.7.2'
+    implementation 'com.google.code.gson:gson:2.8.6'
+
+    // Android Jetpack
+    // Untuk Management Database SQLite
+    def room_version = "2.2.4"
+    implementation "androidx.room:room-runtime:$room_version"
+    annotationProcessor "androidx.room:room-compiler:$room_version"
 }

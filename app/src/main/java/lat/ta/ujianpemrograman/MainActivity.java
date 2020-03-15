@@ -8,12 +8,9 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
-import android.database.sqlite.SQLiteDatabase;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.os.StrictMode;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -25,11 +22,6 @@ import android.widget.Toast;
 
 import com.wenchao.jsql.DBHelper;
 import com.wenchao.jsql.JSONParser;
-import com.wenchao.jsql.JSQLite;
-
-import org.apache.http.NameValuePair;
-import org.json.JSONArray;
-import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -76,7 +68,7 @@ import Model.Soal1;
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+//		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
 		setContentView(R.layout.activity_main);
 		btnstart = (ImageButton) findViewById(R.id.buttonstart);
@@ -85,7 +77,7 @@ import Model.Soal1;
 		txtAbout.setOnClickListener(hlmnAbout);
 		if(isNetworkAvailable(getApplicationContext())){
 			Toast.makeText(getApplicationContext(), "Menyambungkan Ke Server...", Toast.LENGTH_LONG).show();
-			checkUpdate();
+//			checkUpdate();
 		}else{
 			Toast.makeText(getApplicationContext(), "Tidak Terhubung Dengan Server", Toast.LENGTH_LONG).show();
 		}
@@ -113,8 +105,8 @@ import Model.Soal1;
 		public void onClick(View view) {
 			switch (view.getId()) {
 				case R.id.textViewAbout:
-					intent = new Intent(context, About.class);
-					startActivity(intent);
+//					intent = new Intent(context, About.class);
+//					startActivity(intent);
 					break;
 
 			}
@@ -154,71 +146,71 @@ import Model.Soal1;
 
 	}
 
-	private void checkUpdate(){
-		String url = serverUrl + "index.php/wservice/checkVersion";
-		ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
-		String ver;
+//	private void checkUpdate(){
+//		String url = serverUrl + "index.php/wservice/checkVersion";
+//		ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
+//		String ver;
+//
+//		try {
+//			JSONObject jObj = jsonParser.getJSONFromUrl(url, params);
+//			JSONArray arr = jObj.getJSONArray("versi");
+//			JSONObject a = arr.getJSONObject(0);
+//			ver = a.getString("version");
+//			String pkt = a.getString("detail");
+//			Log.d("pkt",pkt);
+//			String sqlver = db.getdbversion();
+//			if(ver.equals(sqlver)){
+//				Toast.makeText(getApplicationContext(), "Soal Telah Diperbarui", Toast.LENGTH_LONG).show();
+//			}else{
+//				Toast.makeText(getApplicationContext(), "Memperbarui Soal", Toast.LENGTH_LONG).show();
+//				db.updatedbver(ver);
+//				updatePaket();
+//				updateSoal(pkt);
+//				String urlfile = serverUrl + "index.php/wservice/getFile/"+pkt;
+//				JSONObject JOfile = jsonParser.getJSONFromUrl(urlfile, params);
+//				JSONArray fnarr = JOfile.getJSONArray("");
+////				for (int i = 0; i < fnarr.length(); i++) {
+////					JSONObject row = fnarr.getJSONObject(i);
+//////					String fname = row.getString("audio");
+////					try {
+//////						downloadFile(fname);
+////					} catch (Exception e) {
+////						Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_LONG).show();
+////					}
+////				}
+//
+//			}
+//		} catch (Exception e) {
+//			// TODO: handle exception
+//			Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_LONG).show();
+//		}
+//	}
 
-		try {
-			JSONObject jObj = jsonParser.getJSONFromUrl(url, params);
-			JSONArray arr = jObj.getJSONArray("versi");
-			JSONObject a = arr.getJSONObject(0);
-			ver = a.getString("version");
-			String pkt = a.getString("detail");
-			Log.d("pkt",pkt);
-			String sqlver = db.getdbversion();
-			if(ver.equals(sqlver)){
-				Toast.makeText(getApplicationContext(), "Soal Telah Diperbarui", Toast.LENGTH_LONG).show();
-			}else{
-				Toast.makeText(getApplicationContext(), "Memperbarui Soal", Toast.LENGTH_LONG).show();
-				db.updatedbver(ver);
-				updatePaket();
-				updateSoal(pkt);
-				String urlfile = serverUrl + "index.php/wservice/getFile/"+pkt;
-				JSONObject JOfile = jsonParser.getJSONFromUrl(urlfile, params);
-				JSONArray fnarr = JOfile.getJSONArray("");
-//				for (int i = 0; i < fnarr.length(); i++) {
-//					JSONObject row = fnarr.getJSONObject(i);
-////					String fname = row.getString("audio");
-//					try {
-////						downloadFile(fname);
-//					} catch (Exception e) {
-//						Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_LONG).show();
-//					}
-//				}
+//	private void updateSoal(String paket){
+//		String url = serverUrl + "index.php/wservice/updatesoal/"+paket;
+//		ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
+//		try {
+//			JSONObject jObj = jsonParser.getJSONFromUrl(url, params);
+//			SQLiteDatabase sqdb = db.getWritableDatabase();
+//			JSQLite jsql = new JSQLite(jObj, sqdb);
+//			jsql.persist();
+//		} catch (Exception e) {
+//			// TODO: handle exception
+//		}
+//	}
 
-			}
-		} catch (Exception e) {
-			// TODO: handle exception
-			Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_LONG).show();
-		}
-	}
-
-	private void updateSoal(String paket){
-		String url = serverUrl + "index.php/wservice/updatesoal/"+paket;
-		ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
-		try {
-			JSONObject jObj = jsonParser.getJSONFromUrl(url, params);
-			SQLiteDatabase sqdb = db.getWritableDatabase();
-			JSQLite jsql = new JSQLite(jObj, sqdb);
-			jsql.persist();
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-	}
-
-	private void updatePaket(){
-		String url = serverUrl + "index.php/wservice/updatepaket";
-		ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
-		try {
-			JSONObject jObj = jsonParser.getJSONFromUrl(url, params);
-			SQLiteDatabase sqdb = db.getWritableDatabase();
-			JSQLite jsql = new JSQLite(jObj, sqdb);
-			jsql.persist();
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-	}
+//	private void updatePaket(){
+//		String url = serverUrl + "index.php/wservice/updatepaket";
+//		ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
+//		try {
+//			JSONObject jObj = jsonParser.getJSONFromUrl(url, params);
+//			SQLiteDatabase sqdb = db.getWritableDatabase();
+//			JSQLite jsql = new JSQLite(jObj, sqdb);
+//			jsql.persist();
+//		} catch (Exception e) {
+//			// TODO: handle exception
+//		}
+//	}
 
 //	private void downloadFile(String filename){
 //		String fileurl = "http://toefl.alatkimia.com/index.php/uploads/"+filename+".mp3";

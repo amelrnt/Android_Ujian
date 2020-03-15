@@ -5,22 +5,35 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.Window;
- 
-public class SplashScreen extends Activity{
+
+import lat.ta.ujianpemrograman.repository.Repo;
+
+public class SplashScreen extends Activity {
+
+    private Repo repository = new Repo();
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+
         setContentView(R.layout.activity_splash);
         /*menjalankan splash screen dan menu menggunakan delayed thread*/
-        new Handler().postDelayed(new Thread() {
+
+        new Handler().post(() -> {
+            repository.checkUpdate();
+        });
+
+        new Handler().postDelayed(new Thread(){
             @Override
             public void run() {
-                   Intent mainMenu= new Intent(SplashScreen.this,MainActivity.class);
-                   SplashScreen.this.startActivity(mainMenu);
-                   SplashScreen.this.finish();
-                   overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
+                super.run();
+
+                overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
+                Intent intent = new Intent(SplashScreen.this, MainActivity.class);
+                startActivity(intent);
+                finish();
             }
-    }, 3000);
+        }, 3000);
     }
 }
