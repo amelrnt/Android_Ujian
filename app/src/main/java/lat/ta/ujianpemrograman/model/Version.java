@@ -24,9 +24,9 @@ public class Version {
     @SerializedName("version")
     @Expose
     @ColumnInfo(name = "version")
-    private String version;
+    private int version;
 
-    public Version(int idVersion, String detail, String version) {
+    public Version(int idVersion, String detail, int version) {
         this.idVersion = idVersion;
         this.detail = detail;
         this.version = version;
@@ -51,11 +51,11 @@ public class Version {
         this.detail = detail;
     }
 
-    public String getVersion() {
+    public int getVersion() {
         return version;
     }
 
-    public void setVersion(String version) {
+    public void setVersion(int version) {
         this.version = version;
     }
 }
