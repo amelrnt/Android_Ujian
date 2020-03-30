@@ -1,6 +1,5 @@
 package lat.ta.ujianpemrograman.model;
 
-import androidx.annotation.ColorInt;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;

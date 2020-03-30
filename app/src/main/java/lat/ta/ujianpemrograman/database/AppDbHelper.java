@@ -14,7 +14,7 @@ public class AppDbHelper {
 
     private static AppDb instance = null;
 
-    public static AppDb getInstance(Context context) {
+    public static synchronized AppDb getInstance(Context context) {
         if (instance == null) {
             instance = Room.databaseBuilder(context, AppDb.class, "app_database.db").build();
         }

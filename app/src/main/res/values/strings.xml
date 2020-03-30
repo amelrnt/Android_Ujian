@@ -5,4 +5,9 @@
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
 
+    <string name="info_network_error">Network Error, Please check your connection.</string>
+    <string name="info_network_not_availavle">Please Check Your Internet Connection.</string>
+    <string name="info_version_updating">Updating Questions.</string>
+    <string name="info_version_uptodate">Version Up to Date.</string>
+
 </resources>

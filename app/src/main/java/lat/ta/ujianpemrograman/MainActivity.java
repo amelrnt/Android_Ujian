@@ -1,149 +1,51 @@
 package lat.ta.ujianpemrograman;
 
-
-import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.app.AlertDialog;
-import android.app.ProgressDialog;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.net.ConnectivityManager;
 import android.os.Bundle;
-import android.os.StrictMode;
-import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
-import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.ProgressBar;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import com.wenchao.jsql.DBHelper;
-import com.wenchao.jsql.JSONParser;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import androidx.appcompat.app.AppCompatActivity;
 
 import Model.ListPaketSoal;
-import Model.Soal1;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
-@SuppressLint("ShowToast") public class MainActivity extends Activity {
-	private static final ProgressBar ProgressBar = null;
-	public static String paket ="";
-	ImageButton btnstart;
-	TextView txtAbout;
-	Button btnver;
-	ArrayList<HashMap<String, String>> list;
-	HashMap<String, String> dr;
-	private JSONParser jsonParser;
-	private List<Soal1> dbver;
-	private DBHelper db;
-	private ProgressBar pb;
-	private ProgressDialog pd;
-	private String serverUrl = "http://10.0.32.150:8080/TA/";
-	final Context context = this;
-	Intent intent;
+import static lat.ta.ujianpemrograman.Utils.createDialog;
+import static lat.ta.ujianpemrograman.Utils.showMessage;
+
+/**
+ * @class MainActivity merupakan sebuah activity
+ * yang akan tampil setelah [SplashScreen].
+ *
+ * Proses yang dilakukan :
+ *
+ */
+
+public class MainActivity extends AppCompatActivity {
+
+	@OnClick(R.id.btn_start) void start() {
+		Intent intent = new Intent(getApplicationContext(), ListPaketSoal.class);
+		startActivity(intent);
+	}
+
+	@OnClick(R.id.tv_about) void about () {
+		Intent intent = new Intent(getApplicationContext(), AboutActivity.class);
+		startActivity(intent);
+	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		db = new DBHelper(this);
-		try {
-			db.createDataBase();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		if (android.os.Build.VERSION.SDK_INT > 9) {
-			StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-			StrictMode.setThreadPolicy(policy);
-		}
-		list = new ArrayList<HashMap<String, String>>();
-		jsonParser = new JSONParser();
-
-		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
-//		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-
 		setContentView(R.layout.activity_main);
-		btnstart = (ImageButton) findViewById(R.id.buttonstart);
-		btnstart.setOnClickListener(mulaiListener);
-		txtAbout = (TextView) findViewById(R.id.textViewAbout);
-		txtAbout.setOnClickListener(hlmnAbout);
-		if(isNetworkAvailable(getApplicationContext())){
-			Toast.makeText(getApplicationContext(), "Menyambungkan Ke Server...", Toast.LENGTH_LONG).show();
-//			checkUpdate();
-		}else{
-			Toast.makeText(getApplicationContext(), "Tidak Terhubung Dengan Server", Toast.LENGTH_LONG).show();
-		}
+		ButterKnife.bind(this);
 
-	}
-
-	private View.OnClickListener mulaiListener = new View.OnClickListener() {
-
-		@Override
-		public void onClick(View view) {
-			switch (view.getId()) {
-				case R.id.buttonstart:
-					intent = new Intent(context, ListPaketSoal.class);
-					startActivity(intent);
-					break;
-
-			}
-
-		}
-	};
-
-	private View.OnClickListener hlmnAbout = new View.OnClickListener() {
-
-		@Override
-		public void onClick(View view) {
-			switch (view.getId()) {
-				case R.id.textViewAbout:
-//					intent = new Intent(context, About.class);
-//					startActivity(intent);
-					break;
-
-			}
-
-		}
-	};
-	private AlertDialog exitmenu() {
-		AlertDialog builder = new AlertDialog.Builder(this)
-				.setMessage("Apakah anda ingin keluar dari aplikasi ini?")
-				.setCancelable(false)//tidak bisa tekan tombol back
-				//jika pilih yess
-				.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
-					public void onClick(DialogInterface dialog, int id) {
-						Intent intent = new Intent(Intent.ACTION_MAIN);
-						intent.addCategory(Intent.CATEGORY_HOME);
-						intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-						startActivity(intent);
-					}
-				})
-				//jika pilih no
-				.setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
-					public void onClick(DialogInterface dialog, int id) {
-						dialog.cancel();
-					}
-				})
-				.create();
-		return builder;
-
+		showMessage(this, "Version "+ App.getVersion());
 	}
 
 
 	@Override
 	public void onBackPressed() {
-		// TODO Auto-generated method stub
-		AlertDialog dialog = exitmenu();
-		dialog.show();
-
+		createDialog(getApplicationContext(), "Apakah anda ingin keluar dari aplikasi ini ?")
+				.show();
 	}
 
 //	private void checkUpdate(){
@@ -181,7 +83,6 @@ import Model.Soal1;
 //
 //			}
 //		} catch (Exception e) {
-//			// TODO: handle exception
 //			Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_LONG).show();
 //		}
 //	}
@@ -233,10 +134,6 @@ import Model.Soal1;
 //				});
 //
 //	}
-
-	public static boolean isNetworkAvailable(Context context) {
-		return ((ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE)).getActiveNetworkInfo() != null;
-	}
 
 }
 

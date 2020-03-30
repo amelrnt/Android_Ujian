@@ -5,7 +5,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiHelper {
 
-    public static String URL = "192.168.56.1";
+    public static String URL = "192.168.43.136";
 
     private static ApiService instance = null;
 

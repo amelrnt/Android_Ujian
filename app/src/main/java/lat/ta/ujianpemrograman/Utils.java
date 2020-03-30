@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 
 import com.google.android.material.snackbar.Snackbar;
 
@@ -71,5 +73,11 @@ public class Utils {
         View view = ((Activity) context).findViewById(android.R.id.content);
         Snackbar.make(view, message, Snackbar.LENGTH_LONG)
                 .show();
+    }
+
+    public static void setFullScreen(Window window) {
+        window.requestFeature(Window.FEATURE_NO_TITLE);
+        window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
     }
 }
