@@ -11,10 +11,10 @@ import lat.ta.ujianpemrograman.model.Version;
         version = 2, exportSchema = false)
 public abstract class AppDb extends RoomDatabase {
 
-    abstract VersionDao getVersionDao();
+    public abstract VersionDao getVersionDao();
 
-    abstract PacketDao getPacketDao();
+    public abstract PacketDao getPacketDao();
 
-    abstract QuestionDao getQuestionDao();
+    public abstract QuestionDao getQuestionDao();
 
 }

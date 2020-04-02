@@ -2,6 +2,9 @@ package lat.ta.ujianpemrograman.repository;
 
 import android.content.Context;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 import lat.ta.ujianpemrograman.R;
 import lat.ta.ujianpemrograman.api.ApiHelper;
 import lat.ta.ujianpemrograman.api.ApiService;
@@ -19,11 +22,13 @@ public class Repository<T> implements Callback<T> {
     protected ApiService service;
     protected AppDb database;
     protected Context context;
+    protected ExecutorService executor;
 
     public Repository(Context ctx) {
         context = ctx;
         service = ApiHelper.getInstance();
         database = AppDbHelper.getInstance(context);
+        executor = Executors.newSingleThreadExecutor();
     }
 
     protected boolean isOnline() {

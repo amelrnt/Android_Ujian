@@ -3,14 +3,18 @@ package lat.ta.ujianpemrograman;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.Window;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
+import lat.ta.ujianpemrograman.model.Packet;
+import lat.ta.ujianpemrograman.model.Question;
 import lat.ta.ujianpemrograman.model.Version;
+import lat.ta.ujianpemrograman.repository.PacketRepository;
+import lat.ta.ujianpemrograman.repository.QuestionRepository;
 import lat.ta.ujianpemrograman.repository.VersionRepository;
 
 import static lat.ta.ujianpemrograman.Utils.setFullScreen;
@@ -21,8 +25,10 @@ import static lat.ta.ujianpemrograman.Utils.showMessage;
  * pada saat aplikasi pertama kali dijalankan.
  *
  * Proses yang dilakukan :
- * - [Async] Melakukan check update berdasarkan versi.
- * - [Async] Melakukan update soal jika versi berbeda.
+ * - [Sync] Check Koneksi.
+ * - [Sync] Check Versi.
+ * - [Sync] Melakukan check update berdasarkan versi.
+ * - [Sync] Melakukan update soal jika versi berbeda.
  */
 
 public class SplashScreenActivity extends AppCompatActivity {
@@ -32,30 +38,23 @@ public class SplashScreenActivity extends AppCompatActivity {
     private final static int UP_TO_DATE = 0;
     private final static int NETWORK_ERROR = -1;
 
-    private VersionRepository repository;
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setFullScreen(getWindow());
         setContentView(R.layout.activity_splash);
 
-        repository = new VersionRepository(this);
-
         /* Run New Thread At Background */
         new Handler().postDelayed(() -> {
             try {
                 switch (checkUpdate()) {
                     case ON_UPDATE:
+                        updatingPacket();
+                        moveToNextActivity();
                         break;
 
                     case UP_TO_DATE:
-                        overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
-                        Intent intent = new Intent(
-                                SplashScreenActivity.this, MainActivity.class);
-
-                        startActivity(intent);
-                        finish();
+                        moveToNextActivity();
                         break;
 
                     case NETWORK_ERROR:
@@ -76,6 +75,7 @@ public class SplashScreenActivity extends AppCompatActivity {
      * @throws InterruptedException
      */
     private int checkUpdate() throws ExecutionException, InterruptedException {
+        VersionRepository repository = new VersionRepository(this);
         Future<Version> future = repository.checkVersionSync();
         if (future != null) {
             Version version = future.get();
@@ -94,11 +94,33 @@ public class SplashScreenActivity extends AppCompatActivity {
         return NETWORK_ERROR;
     }
 
-    private void updatingQuestion() {
-
+    private void updatingPacket() throws ExecutionException, InterruptedException  {
+        PacketRepository repository = new PacketRepository(this);
+        Future<List<Packet>> packets = repository.getPacket();
+        List<Packet> list = packets.get();
+        if (! list.isEmpty()) {
+            repository.save(list);
+            for (Packet packet: list) {
+                updatingQuestion(packet.getId());
+            }
+        }
     }
 
-    private void updating() {
+    private void updatingQuestion(Integer packet) throws ExecutionException, InterruptedException  {
+        packet = (packet == null) ? App.getVersionDetail(): packet;
+        QuestionRepository repository = new QuestionRepository(this);
+        Future<List<Question>> listFuture = repository.updateQuestion(packet);
+        List<Question> list = listFuture.get();
+        if (! list.isEmpty()) {
+            repository.save(list);
+        }
+    }
 
+    private void moveToNextActivity() {
+        Intent intent = new Intent(SplashScreenActivity.this, MainActivity.class);
+
+        overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
+        startActivity(intent);
+        finish();
     }
 }

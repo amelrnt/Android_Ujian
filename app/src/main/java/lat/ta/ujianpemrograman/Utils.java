@@ -56,7 +56,7 @@ public class Utils {
 
                 connectivityManager.getActiveNetworkInfo();
                 URLConnection connection = myUrl.openConnection();
-                connection.setConnectTimeout(3000);
+                connection.setConnectTimeout(20000);
                 connection.connect();
                 Log.i(TAG, "isConnected: status=TRUE");
                 return true;
@@ -65,6 +65,7 @@ public class Utils {
             return newThread.get();
         } catch (ExecutionException | InterruptedException | NullPointerException e) {
             Log.i(TAG, "isConnected: status=FALSE");
+            e.printStackTrace();
             return false;
         }
     }
