@@ -26,12 +26,10 @@
             </intent-filter>
         </activity>
 
-        <activity
-            android:name=".MainActivity"
-            android:label="@string/app_name" />
-<!--        <activity-->
-<!--            android:name=".ListPaketSoal"-->
-<!--            android:label="@string/app_name"/>-->
+        <activity android:name=".MainActivity" />
+        <activity android:name=".ListPacketActivity" />
+        <activity android:name=".AboutActivity" />
+
         <activity
             android:name=".soalweb"
             android:label="@string/app_name" />
@@ -41,10 +39,7 @@
         <activity
             android:name=".soaljarkom"
             android:label="@string/app_name" />
-<!--        <activity-->
-<!--            android:name=".About"-->
-<!--            android:label="@string/app_name"-->
-<!--            android:screenOrientation="portrait" />-->
+
 <!--        <activity-->
 <!--            android:name=".Soal1"-->
 <!--            android:label="@string/app_name" />-->

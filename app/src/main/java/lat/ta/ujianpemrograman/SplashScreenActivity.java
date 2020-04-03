@@ -96,7 +96,7 @@ public class SplashScreenActivity extends AppCompatActivity {
 
     private void updatingPacket() throws ExecutionException, InterruptedException  {
         PacketRepository repository = new PacketRepository(this);
-        Future<List<Packet>> packets = repository.getPacket();
+        Future<List<Packet>> packets = repository.getAllSync();
         List<Packet> list = packets.get();
         if (! list.isEmpty()) {
             repository.save(list);

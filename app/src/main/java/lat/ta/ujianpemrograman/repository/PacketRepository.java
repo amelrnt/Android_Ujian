@@ -2,7 +2,11 @@ package lat.ta.ujianpemrograman.repository;
 
 import android.content.Context;
 
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
 import lat.ta.ujianpemrograman.api.ApiHelper;
@@ -16,6 +20,8 @@ public class PacketRepository extends Repository<Packet> {
     private static String TAG = VersionRepository.class.getSimpleName();
 
     private PacketDao dao;
+    private MutableLiveData<List<Packet>> liveData;
+
     private ApiService service = ApiHelper.getInstance();
 
     public PacketRepository(Context context) {
@@ -23,7 +29,29 @@ public class PacketRepository extends Repository<Packet> {
         dao = database.getPacketDao();
     }
 
-    public Future<List<Packet>> getPacket() {
+    public LiveData<List<Packet>> getAllAsync(boolean fromWebService) {
+        if (fromWebService) {
+            executor.submit(() -> {
+                try {
+                    Future<List<Packet>> future = getAllSync();
+                    List<Packet> result = future.get();
+                    liveData.postValue(result);
+                } catch (ExecutionException | InterruptedException e) {
+                    e.printStackTrace();
+                }
+            });
+        } else {
+            getAll();
+        }
+
+        return liveData;
+    }
+
+    public void getAll() {
+        executor.submit(() -> liveData.postValue(dao.getAll()));
+    }
+
+    public Future<List<Packet>> getAllSync() {
         if (! isOnline()) return null;
 
         return executor.submit(() -> {

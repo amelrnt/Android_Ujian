@@ -12,8 +12,6 @@ import android.widget.TextView;
 
 import com.wenchao.jsql.DBHelper;
 
-import Model.ListPaketSoal;
-
 public class LihatNilaiActivity extends Activity {
     protected Cursor cursor;
     DBHelper dbHelper;
@@ -62,7 +60,7 @@ public class LihatNilaiActivity extends Activity {
         public void onClick(View view) {
             switch (view.getId()) {
                 case R.id.btnkembali:
-                    intent = new Intent(context, ListPaketSoal.class);
+                    intent = new Intent(context, ListPacketActivity.class);
                     startActivity(intent);
                     break;
 

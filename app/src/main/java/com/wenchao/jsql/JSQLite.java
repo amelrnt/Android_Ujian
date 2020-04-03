@@ -19,7 +19,8 @@ public class JSQLite extends JSONObject{
 	private SQLHelper defaultHelper = new SQLHelper(){
 
 		@Override
-		public String getSQLClause(String table, String[] matchedKeys,JSONObject record, boolean recordExisting, String pkName) throws JSONException {
+		public String getSQLClause(String table, String[] matchedKeys,JSONObject record,
+								   boolean recordExisting, String pkName) throws JSONException {
 			if(matchedKeys.length == 0){
 				return null;
 			}
@@ -148,7 +149,8 @@ public class JSQLite extends JSONObject{
 	
 	private void scanDatabase(SQLiteDatabase db){
 		
-		String selection = "SELECT name FROM sqlite_master WHERE type = 'table' AND name != 'android_metadata' AND name != 'sqlite_sequence' ";
+		String selection = "SELECT name FROM sqlite_master WHERE type = 'table' AND " +
+				"name != 'android_metadata' AND name != 'sqlite_sequence' ";
 		Cursor c = db.rawQuery(selection,null);
 		if(c.moveToFirst()) {;
 			do {

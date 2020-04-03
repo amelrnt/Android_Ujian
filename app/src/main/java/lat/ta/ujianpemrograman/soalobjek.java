@@ -33,7 +33,6 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import Model.ListPaketSoal;
 import Model.Soal1;
 
 public class soalobjek extends Activity{
@@ -92,7 +91,7 @@ public class soalobjek extends Activity{
         txttanggal.setText(Integer.toString(day)+"-"+Integer.toString(month+1)+"-"+Integer.toString(year));
 
         Section6 = new ArrayList<Soal1>();
-        Section6 = db.getSoalDinamis(ListPaketSoal.paket, "6");
+//        Section6 = db.getSoalDinamis(ListPacketActivity.paket, "6");
 
         btnSelesai.setOnClickListener(klikSelesai);
         btnPrev.setOnClickListener(klikSebelum);
@@ -421,7 +420,7 @@ public class soalobjek extends Activity{
                 //jika pilih yess
                 .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        Intent intent = new Intent(context, ListPaketSoal.class);
+                        Intent intent = new Intent(context, ListPacketActivity.class);
                         startActivity(intent);
                     }
                 })
@@ -443,7 +442,7 @@ public class soalobjek extends Activity{
                 //jika pilih yess
                 .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        Intent intent = new Intent(context, ListPaketSoal.class);
+                        Intent intent = new Intent(context, ListPacketActivity.class);
                         startActivity(intent);
                     }
                 })

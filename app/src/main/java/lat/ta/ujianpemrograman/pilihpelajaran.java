@@ -7,8 +7,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import Model.ListPaketSoal;
-
 public class pilihpelajaran extends Activity {
 Button btn1, btn2, btn3, btn4, btn5, btn6, btn7;
     final Context context = this;
@@ -62,7 +60,7 @@ Button btn1, btn2, btn3, btn4, btn5, btn6, btn7;
     }
     public void onBackPressed() {
         // TODO Auto-generated method stub
-        Intent intent = new Intent(context, ListPaketSoal.class);
+        Intent intent = new Intent(context, ListPacketActivity.class);
         startActivity(intent);
 
     }
