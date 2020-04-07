@@ -63,7 +63,6 @@ public class LihatmateriActivity extends Activity {
         }
     };
     public void onBackPressed() {
-        // TODO Auto-generated method stub
         Intent intent = new Intent(context.getApplicationContext(), MainActivity.class);
         startActivity(intent);
 

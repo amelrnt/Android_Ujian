@@ -32,6 +32,7 @@ public class ListPacketActivity extends AppCompatActivity {
 
 		// TODO : 1. Instance Object dari adapter ke atribut
 		// TODO : 2. Set Layout dan Adapter
+		// TODO : 3. Set Adapter OnClick listener. Buat pindah ke PilihActionActivity
 
 		viewModel = new ViewModelProvider(this).get(ViewModel.class);
 		viewModel.fetchAllPacket().observe(this, packets -> {

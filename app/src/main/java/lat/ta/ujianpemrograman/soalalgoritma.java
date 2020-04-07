@@ -460,7 +460,6 @@ public class soalalgoritma extends Activity{
 
     @Override
     public void onBackPressed() {
-        // TODO Auto-generated method stub
         AlertDialog dialog = exitmenu();
         dialog.show();
 

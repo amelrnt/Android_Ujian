@@ -17,7 +17,7 @@ import static lat.ta.ujianpemrograman.Utils.showMessage;
  * yang akan tampil setelah [SplashScreen].
  *
  * Proses yang dilakukan :
- * - Handle Button Secara Start
+ * - Handle Button Start
  * - Handle TextView OnClick
  */
 
@@ -45,9 +45,8 @@ public class MainActivity extends AppCompatActivity {
 
 	@Override
 	public void onBackPressed() {
-		super.onBackPressed();
-		createDialog(getApplicationContext(), "Apakah anda ingin keluar dari aplikasi ini ?")
-				.show();
+		String message = getResources().getString(R.string.warning_back);
+		createDialog(getApplicationContext(), message).show();
 	}
 }
 

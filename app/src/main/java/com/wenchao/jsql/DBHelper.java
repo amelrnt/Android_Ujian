@@ -257,7 +257,6 @@ public class DBHelper extends SQLiteOpenHelper {
 
   
  public Cursor fetchAllPaket(SQLiteDatabase db) {
-	  // TODO Auto-generated method stub
 	 try {
 	 	   String myPath = DB_PATH + DB_NAME;
 	 	   db = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READWRITE);
@@ -292,6 +291,5 @@ public class DBHelper extends SQLiteOpenHelper {
 
  @Override
  public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-  // TODO Auto-generated method stub
  }
 }

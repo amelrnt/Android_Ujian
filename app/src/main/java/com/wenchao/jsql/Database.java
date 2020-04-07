@@ -15,7 +15,6 @@ public class Database extends SQLiteOpenHelper {
  
     public Database(Context context) {
         super(context, DB_NAME, null, 1);
-        // TODO Auto-generated constructor stub
     }
  
     @Override

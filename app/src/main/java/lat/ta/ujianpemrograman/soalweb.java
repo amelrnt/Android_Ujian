@@ -362,7 +362,7 @@ public class soalweb extends Activity{
 //                        public void onClick(DialogInterface dialog, int item) {
 //                            switch(item){
 //                                case 0 :
-//                                    Intent i = new Intent(getApplicationContext(), pilihpelajaran.class);
+//                                    Intent i = new Intent(getApplicationContext(), PilihPelajaranActivity.class);
 //                                    startActivity(i);
 //                                    break;
 //                            }
@@ -478,7 +478,7 @@ public class soalweb extends Activity{
 //    }
     public void onBackPressed() {
         // TODO Auto-generated method stub
-        Intent intent = new Intent(context, pilihpelajaran.class);
+        Intent intent = new Intent(context, PilihPelajaranActivity.class);
         startActivity(intent);
 
     }
