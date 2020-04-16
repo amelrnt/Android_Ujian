@@ -16,14 +16,12 @@ public class VersionRepository extends Repository<Version> {
     }
 
     public Future<Version> checkVersionSync() {
-        if (isOnline()) {
-            return executor.submit(() -> {
-                Response<Version> response = service.getVersion().execute();
-                return response.body();
-            });
-        } else {
-            return null;
-        }
+        if (isOnline()) return executor.submit(() -> {
+            Response<Version> response = service.getVersion().execute();
+            return response.body();
+        });
+
+        return null;
     }
 
 }

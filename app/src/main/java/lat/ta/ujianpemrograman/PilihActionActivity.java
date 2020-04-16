@@ -10,7 +10,9 @@ import butterknife.OnClick;
 
 import static lat.ta.ujianpemrograman.Utils.setFullScreen;
 
-public class PilihactionActivity extends AppCompatActivity {
+public class PilihActionActivity extends AppCompatActivity {
+
+    public static final String EXTRA_ID_PACKET = "EXTRA_ID_PACKET";
 
     @OnClick(R.id.bt_mulai) void handleStart() {
         startActivity(new Intent(this, PilihPelajaranActivity.class));
@@ -30,5 +32,8 @@ public class PilihactionActivity extends AppCompatActivity {
         setFullScreen(getWindow());
         setContentView(R.layout.activity_pilihaction);
         ButterKnife.bind(this);
+
+        if (getIntent() == null) finish();
+        int packet = getIntent().getIntExtra(EXTRA_ID_PACKET, -1);
     }
 }

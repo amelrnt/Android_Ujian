@@ -3,6 +3,7 @@ package lat.ta.ujianpemrograman;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -34,9 +35,24 @@ import static lat.ta.ujianpemrograman.Utils.showMessage;
 public class SplashScreenActivity extends AppCompatActivity {
 
     private String TAG = this.getClass().getSimpleName();
-    private final static int ON_UPDATE = 1;
-    private final static int UP_TO_DATE = 0;
+    private final static int UP_TO_DATE = 1;
     private final static int NETWORK_ERROR = -1;
+
+    private Runnable run = () -> {
+        try {
+            switch (checkUpdate()) {
+                case UP_TO_DATE:
+                    moveToNextActivity();
+                    break;
+
+                case NETWORK_ERROR:
+                    break;
+            }
+
+        } catch (ExecutionException | InterruptedException e) {
+            e.printStackTrace();
+        }
+    };
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -45,47 +61,21 @@ public class SplashScreenActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
 
         /* Run New Thread At Background */
-        new Handler().postDelayed(() -> {
-            try {
-                switch (checkUpdate()) {
-                    case ON_UPDATE:
-                        updatingPacket();
-                        moveToNextActivity();
-                        break;
-
-                    case UP_TO_DATE:
-                        moveToNextActivity();
-                        break;
-
-                    case NETWORK_ERROR:
-                        break;
-                }
-
-            } catch (ExecutionException | InterruptedException e) {
-                e.printStackTrace();
-            }
-        }, 3000);
+        new Handler().postDelayed(run, 3000);
     }
 
-    /**
-     * Checking Update
-     *
-     * @return boolean
-     * @throws ExecutionException
-     * @throws InterruptedException
-     */
     private int checkUpdate() throws ExecutionException, InterruptedException {
         VersionRepository repository = new VersionRepository(this);
         Future<Version> future = repository.checkVersionSync();
         if (future != null) {
             Version version = future.get();
+            Log.d(TAG, "checkUpdate: version="+ version.getVersion());
 
             if (App.getVersion() != version.getVersion()) {
+                updatingPacket();
                 App.setSharedPreferences(App.KEY_VERSION, version.getVersion());
                 App.setSharedPreferences(App.KEY_VERSION_DETAIL, version.getDetail());
-                showMessage(this, getResources().getString(R.string.info_version_updating));
-
-                return ON_UPDATE;
+                showMessage(SplashScreenActivity.this, getResources().getString(R.string.info_version_updating));
             }
 
             return UP_TO_DATE;
@@ -96,23 +86,27 @@ public class SplashScreenActivity extends AppCompatActivity {
 
     private void updatingPacket() throws ExecutionException, InterruptedException  {
         PacketRepository repository = new PacketRepository(this);
-        Future<List<Packet>> packets = repository.getAllSync();
-        List<Packet> list = packets.get();
-        if (! list.isEmpty()) {
-            repository.save(list);
-            for (Packet packet: list) {
+        Future<List<Packet>> future = repository.getAllSync();
+        if (future != null) {
+            List<Packet> packets = future.get();
+            Log.d(TAG, "updatingPacket: packets="+ packets.size());
+
+            repository.save(packets).get();
+            for (Packet packet: packets) {
                 updatingQuestion(packet.getId());
             }
         }
     }
 
     private void updatingQuestion(Integer packet) throws ExecutionException, InterruptedException  {
-        packet = (packet == null) ? App.getVersionDetail(): packet;
         QuestionRepository repository = new QuestionRepository(this);
-        Future<List<Question>> listFuture = repository.updateQuestion(packet);
-        List<Question> list = listFuture.get();
-        if (! list.isEmpty()) {
-            repository.save(list);
+        Future<List<Question>> future = repository.updateQuestion(packet);
+        if (future == null) return;
+
+        List<Question> questions = future.get();
+        if (! questions.isEmpty()) {
+            Log.d(TAG, "updatingQuestion: questions="+ questions.size());
+            repository.save(questions);
         }
     }
 

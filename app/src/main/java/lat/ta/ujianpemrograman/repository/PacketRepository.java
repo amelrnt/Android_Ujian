@@ -17,8 +17,6 @@ import retrofit2.Response;
 
 public class PacketRepository extends Repository<Packet> {
 
-    private static String TAG = VersionRepository.class.getSimpleName();
-
     private PacketDao dao;
     private MutableLiveData<List<Packet>> liveData;
 
@@ -27,6 +25,7 @@ public class PacketRepository extends Repository<Packet> {
     public PacketRepository(Context context) {
         super(context);
         dao = database.getPacketDao();
+        liveData = new MutableLiveData<>();
     }
 
     public LiveData<List<Packet>> getAllAsync(boolean fromWebService) {
@@ -60,9 +59,11 @@ public class PacketRepository extends Repository<Packet> {
         });
     }
 
-    public void save(List<Packet> packets) {
-        dao.clear();
-        for (Packet packet: packets) save(packet);
+    public Future save(List<Packet> packets) {
+        return executor.submit(() -> {
+            dao.clear();
+            for (Packet packet: packets) save(packet);
+        });
     }
 
     public void save(Packet packet) {

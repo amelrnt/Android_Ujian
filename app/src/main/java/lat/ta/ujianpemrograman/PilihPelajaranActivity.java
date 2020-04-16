@@ -19,7 +19,7 @@ import lat.ta.ujianpemrograman.ui.Adapter;
 import static lat.ta.ujianpemrograman.Utils.setFullScreen;
 
 public class PilihPelajaranActivity extends AppCompatActivity implements
-        Adapter.OnBinding<String> {
+    Adapter.OnBinding<String> {
 
     private List<String> data;
 

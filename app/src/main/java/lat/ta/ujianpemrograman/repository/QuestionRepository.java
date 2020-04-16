@@ -3,6 +3,7 @@ package lat.ta.ujianpemrograman.repository;
 import android.content.Context;
 
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
 import lat.ta.ujianpemrograman.api.ApiHelper;
@@ -32,13 +33,21 @@ public class QuestionRepository extends Repository<Question> {
         });
     }
 
-    public void save(List<Question> list) {
-        dao.clear();
-        for (Question question: list) save(question);
+    public Future save(List<Question> list) {
+        return executor.submit(() -> {
+            dao.clear();
+            for (Question question: list) {
+                try {
+                    save(question).get();
+                } catch (ExecutionException | InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
-    public void save(Question question) {
-        executor.submit(() -> dao.add(question));
+    public Future save(Question question) {
+        return executor.submit(() -> dao.add(question));
     }
 
 }
