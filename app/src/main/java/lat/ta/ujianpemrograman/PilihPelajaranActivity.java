@@ -48,7 +48,7 @@ public class PilihPelajaranActivity extends AppCompatActivity implements
         button.setOnClickListener(v -> {
             Intent intent = new Intent(PilihPelajaranActivity.this,
                     QuestionActivity.class);
-            intent.putExtra(QuestionActivity.EXTRA_QUESTION, (String) obj);
+            intent.putExtra(QuestionActivity.EXTRA_QUESTION, obj);
             startActivity(intent);
         });
     }

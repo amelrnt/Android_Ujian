@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/bgsc2" >
 
     <ScrollView
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/linearLayout1"
         android:layout_below="@+id/linearLayout1"
         android:paddingBottom="10dp" >
 
         <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="194dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/activity_vertical_margin"
             android:orientation="vertical" >
 
             <TextView
-                android:id="@+id/textViewSoal2"
+                android:id="@+id/tv_question"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
@@ -27,7 +27,7 @@
                 android:textStyle="bold" />
 
             <RadioGroup
-                android:id="@+id/radioGroup1"
+                android:id="@+id/rg_answer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
@@ -80,14 +80,14 @@
             android:layout_height="wrap_content" >
 
             <ImageButton
-                android:id="@+id/buttonPrev"
+                android:id="@+id/btn_prev"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
                 android:src="@drawable/kiribtn" />
 
             <ImageButton
-                android:id="@+id/buttonSelesai"
+                android:id="@+id/btn_done"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.71"
@@ -95,7 +95,7 @@
                 android:src="@drawable/finishbtn" />
 
             <ImageButton
-                android:id="@+id/buttonNext"
+                android:id="@+id/btn_next"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
@@ -117,41 +117,36 @@
             android:layout_height="wrap_content" >
 
             <TextView
-                android:id="@+id/textViewNama"
+                android:id="@+id/tv_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TextView"
-                android:textColor="@android:color/background_light" />
+                android:text="TextView" />
 
             <TextView
-                android:id="@+id/textViewHalaman"
+                android:id="@+id/tv_no"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.76"
                 android:gravity="center"
-                android:text="TextView"
-                android:textColor="@android:color/background_light" />
+                android:text="TextView" />
 
             <TextView
-                android:id="@+id/textViewTanggal"
+                android:id="@+id/tv_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TextView"
-                android:textColor="@android:color/background_light" />
+                android:text="TextView" />
         </LinearLayout>
 
         <TextView
-            android:id="@+id/textViewWaktu"
+            android:id="@+id/tv_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
-            android:text="TextView"
-            android:textColor="@android:color/background_light" />
+            android:text="TextView" />
 
         <ImageView
             android:id="@+id/gambarKuis"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </LinearLayout>
-
 </RelativeLayout>
