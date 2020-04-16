@@ -35,7 +35,6 @@
         <activity android:name=".LihatNilaiActivity" />
         <activity android:name=".QuestionActivity" />
         <activity android:name=".Pilihmateri" />
-<!--        <activity android:name=".lihatmateri" />-->
     </application>
 
 </manifest>

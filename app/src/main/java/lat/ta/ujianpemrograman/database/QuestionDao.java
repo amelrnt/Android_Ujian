@@ -17,6 +17,9 @@ public interface QuestionDao {
     @Query("SELECT * FROM tbl_soal")
     List<Question> getAll();
 
+    @Query("SELECT * FROM tbl_soal WHERE kategory = :category")
+    List<Question> get(int category);
+
     @Query("DELETE FROM tbl_soal")
     void clear();
 

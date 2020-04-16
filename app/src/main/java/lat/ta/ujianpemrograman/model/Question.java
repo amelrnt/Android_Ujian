@@ -46,7 +46,7 @@ public class Question {
     @ColumnInfo(name = "jwban")
     private String correctAnswer;
 
-    @SerializedName("kategory")
+    @SerializedName("kategori")
     @Expose
     @ColumnInfo(name = "kategory")
     private String category;

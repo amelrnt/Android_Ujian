@@ -12,8 +12,12 @@
     <string name="info_network_not_availavle">Please Check Your Internet Connection.</string>
     <string name="info_version_updating">Updating Questions.</string>
     <string name="info_version_uptodate">Version Up to Date.</string>
+    <string name="info_starting">Starting Tryout</string>
 
+    <string name="warning_empty_input">Please Input Your Name.</string>
     <string name="warning_back">Apakah anda ingin keluar dari aplikasi ini ?</string>
+
+    <string name="label_no_question">Question Number </string>
 
     <!-- Pilihan Pelajaran -->
     <string-array name="pilihan_pelajaran">

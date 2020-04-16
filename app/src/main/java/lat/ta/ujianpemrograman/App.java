@@ -10,11 +10,16 @@ public class App extends Application {
 
     private static SharedPreferences sharedPreferences;
 
-    public static String KEY_VERSION = "KEY_VERSION";
-    public static String KEY_VERSION_DETAIL = "KEY_VERSION_DETAIL";
+    public static final String KEY_VERSION = "KEY_VERSION";
+    public static final String KEY_USERNAME = "KEY_USERNAME";
+    public static final String KEY_VERSION_DETAIL = "KEY_VERSION_DETAIL";
 
     public static int getVersion() {
         return sharedPreferences.getInt(KEY_VERSION, -1);
+    }
+
+    public static String getUsername() {
+        return sharedPreferences.getString(KEY_USERNAME, "");
     }
 
     public static int getVersionDetail() {
