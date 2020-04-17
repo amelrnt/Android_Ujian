@@ -146,6 +146,9 @@ public class QuestionActivity extends AppCompatActivity {
 
     private void done() {
         // TODO : Calculate and show result
+        for (Question q: questionList) {
+
+        }
     }
 
     @SuppressLint("SetTextI18n")
