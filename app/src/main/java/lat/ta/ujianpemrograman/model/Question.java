@@ -145,4 +145,15 @@ public class Question {
     public void setIdPacket(int idPacket) {
         this.idPacket = idPacket;
     }
+
+    public String getOptions(int id) {
+        return getOptions()[id];
+    }
+
+    public String[] getOptions() {
+        return new String[]{
+                getOptionA(), getOptionB(),
+                getOptionC(), getOptionD()
+        };
+    }
 }
