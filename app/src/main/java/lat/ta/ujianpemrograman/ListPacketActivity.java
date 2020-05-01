@@ -11,7 +11,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -50,7 +49,7 @@ public class ListPacketActivity extends AppCompatActivity implements
         ViewModel viewModel = new ViewModelProvider(this).get(ViewModel.class);
 		viewModel.fetchAllPacket()
 				 .observe(this, packets -> {
-					 Log.d(TAG, "onCreate: packets="+ packets.size());
+					 Log.i(TAG, "onCreate: Size Paket="+ packets.size());
 					 adapter.refreshData(packets);
 				 });
     }
@@ -81,7 +80,7 @@ public class ListPacketActivity extends AppCompatActivity implements
 			packetRepository = new PacketRepository(application.getApplicationContext());
 		}
 
-		public LiveData<List<Packet>> fetchAllPacket() {
+		LiveData<List<Packet>> fetchAllPacket() {
 			return packetRepository.getAllAsync(false);
 		}
 	}

@@ -34,7 +34,7 @@ import static lat.ta.ujianpemrograman.Utils.showMessage;
 
 public class SplashScreenActivity extends AppCompatActivity {
 
-    private String TAG = this.getClass().getSimpleName();
+    private String TAG = SplashScreenActivity.class.getSimpleName();
     private final static int UP_TO_DATE = 1;
     private final static int NETWORK_ERROR = -1;
 
@@ -69,7 +69,8 @@ public class SplashScreenActivity extends AppCompatActivity {
         Future<Version> future = repository.checkVersionSync();
         if (future != null) {
             Version version = future.get();
-            Log.d(TAG, "checkUpdate: version="+ version.getVersion());
+            Log.i(TAG, "checkUpdate: App version="+ App.getVersion());
+            Log.i(TAG, "checkUpdate: Database version="+ version.getVersion());
 
             if (App.getVersion() != version.getVersion()) {
                 updatingPacket();
@@ -89,10 +90,12 @@ public class SplashScreenActivity extends AppCompatActivity {
         Future<List<Packet>> future = repository.getAllSync();
         if (future != null) {
             List<Packet> packets = future.get();
-            Log.d(TAG, "updatingPacket: packets="+ packets.size());
+            Log.i(TAG, "updatingPacket: Size Paket="+ packets.size());
 
             repository.save(packets).get();
             for (Packet packet: packets) {
+                Log.i(TAG, "updatingPacket: Id Paket="+ packet.getId());
+                Log.i(TAG, "updatingPacket: Nama Paket="+ packet.getId());
                 updatingQuestion(packet.getId());
             }
         }
@@ -105,7 +108,7 @@ public class SplashScreenActivity extends AppCompatActivity {
 
         List<Question> questions = future.get();
         if (! questions.isEmpty()) {
-            Log.d(TAG, "updatingQuestion: questions="+ questions.size());
+            Log.i(TAG, "updatingQuestion: Size Pertanyaan="+ questions.size());
             repository.save(questions);
         }
     }

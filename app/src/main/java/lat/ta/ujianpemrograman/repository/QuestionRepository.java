@@ -1,6 +1,7 @@
 package lat.ta.ujianpemrograman.repository;
 
 import android.content.Context;
+import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -16,9 +17,10 @@ import retrofit2.Response;
 
 public class QuestionRepository extends Repository<Question> {
 
+    private static final String TAG = QuestionRepository.class.getSimpleName();
+
     private QuestionDao dao;
 
-    private String TAG = QuestionRepository.class.getSimpleName();
     private ApiService service = ApiHelper.getInstance();
 
     public QuestionRepository(Context context) {
@@ -49,6 +51,9 @@ public class QuestionRepository extends Repository<Question> {
     }
 
     public Future save(Question question) {
+        Log.i(TAG, "save: Id Paket="+ question.getIdPacket());
+        Log.i(TAG, "save: Id Pertanyaan="+ question.getId());
+        Log.i(TAG, "save: Kategori="+ question.getCategory());
         return executor.submit(() -> dao.add(question));
     }
 

@@ -9,7 +9,7 @@ import lat.ta.ujianpemrograman.model.Question;
 import lat.ta.ujianpemrograman.model.Version;
 
 @Database(entities = { Version.class, Packet.class, Question.class, Nilai.class },
-        version = 2, exportSchema = false)
+        version = 3, exportSchema = false)
 public abstract class AppDb extends RoomDatabase {
 
     public abstract VersionDao getVersionDao();

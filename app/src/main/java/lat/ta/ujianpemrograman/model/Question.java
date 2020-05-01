@@ -2,6 +2,7 @@ package lat.ta.ujianpemrograman.model;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import com.google.gson.annotations.Expose;
@@ -44,12 +45,12 @@ public class Question {
     @SerializedName("jwban")
     @Expose
     @ColumnInfo(name = "jwban")
-    private String correctAnswer;
+    private int correctAnswer;
 
     @SerializedName("kategori")
     @Expose
     @ColumnInfo(name = "kategory")
-    private String category;
+    private int category;
 
     @SerializedName("paket")
     @Expose
@@ -59,8 +60,9 @@ public class Question {
     public Question() {
     }
 
+    @Ignore
     public Question(int id, String question, String optionA, String optionB, String optionC,
-                    String optionD, String correctAnswer, String category, int idPacket) {
+                    String optionD, int correctAnswer, int category, int idPacket) {
         this.id = id;
         this.question = question;
         this.optionA = optionA;
@@ -120,19 +122,19 @@ public class Question {
         this.optionD = optionD;
     }
 
-    public String getCorrectAnswer() {
+    public int getCorrectAnswer() {
         return correctAnswer;
     }
 
-    public void setCorrectAnswer(String correctAnswer) {
+    public void setCorrectAnswer(int correctAnswer) {
         this.correctAnswer = correctAnswer;
     }
 
-    public String getCategory() {
+    public int getCategory() {
         return category;
     }
 
-    public void setCategory(String category) {
+    public void setCategory(int category) {
         this.category = category;
     }
 
