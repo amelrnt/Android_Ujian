@@ -18,4 +18,6 @@ public abstract class AppDb extends RoomDatabase {
 
     public abstract QuestionDao getQuestionDao();
 
+    public abstract NilaiDao getNilaiDao();
+
 }

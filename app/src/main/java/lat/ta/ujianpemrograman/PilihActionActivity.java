@@ -14,16 +14,27 @@ public class PilihActionActivity extends AppCompatActivity {
 
     public static final String EXTRA_ID_PACKET = "EXTRA_ID_PACKET";
 
+    private int paket = -1;
+
     @OnClick(R.id.bt_mulai) void handleStart() {
-        startActivity(new Intent(this, PilihPelajaranActivity.class));
+        Intent intent = new Intent(this, PilihPelajaranActivity.class);
+        intent.putExtra(EXTRA_ID_PACKET, paket);
+
+        startActivity(intent);
     }
 
     @OnClick(R.id.bt_nilaiakhir) void handleResult() {
-        startActivity(new Intent(this, NilaiActivity.class));
+        Intent intent = new Intent(this, NilaiActivity.class);
+        intent.putExtra(EXTRA_ID_PACKET, paket);
+
+        startActivity(intent);
     }
 
     @OnClick(R.id.bt_materi) void handleShowMateri() {
-        startActivity(new Intent(this, Pilihmateri.class));
+        Intent intent = new Intent(this, Pilihmateri.class);
+        intent.putExtra(EXTRA_ID_PACKET, paket);
+
+        startActivity(intent);
     }
 
     @Override
@@ -34,6 +45,6 @@ public class PilihActionActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         if (getIntent() == null) finish();
-        int packet = getIntent().getIntExtra(EXTRA_ID_PACKET, -1);
+        paket = getIntent().getIntExtra(EXTRA_ID_PACKET, -1);
     }
 }

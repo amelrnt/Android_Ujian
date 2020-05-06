@@ -8,16 +8,28 @@ import androidx.lifecycle.LiveData;
 
 import java.util.List;
 
+import lat.ta.ujianpemrograman.model.Nilai;
 import lat.ta.ujianpemrograman.model.Question;
+import lat.ta.ujianpemrograman.repository.NilaiRepository;
 import lat.ta.ujianpemrograman.repository.QuestionRepository;
 
 public class QuestionViewModel extends AndroidViewModel {
 
     private QuestionRepository questionRepository;
+    private NilaiRepository nilaiRepository;
 
     public QuestionViewModel(@NonNull Application application) {
         super(application);
         questionRepository = new QuestionRepository(application);
+        nilaiRepository = new NilaiRepository(application);
+    }
+
+    void menyimpanNilai(float nilai, int paket) {
+        Nilai param = new Nilai();
+        param.setNilai(nilai);
+        param.setPaket(paket);
+
+        nilaiRepository.save(param);
     }
 
     void savingName(String name) {

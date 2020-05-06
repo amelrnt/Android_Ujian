@@ -2,13 +2,12 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/bgsc2" >
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/bgsc2">
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/linearLayout1"
-        android:layout_below="@+id/linearLayout1"
         android:paddingBottom="10dp" >
 
         <LinearLayout
@@ -19,9 +18,11 @@
 
             <TextView
                 android:id="@+id/tv_question"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="48dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
                 android:text="Medium Text"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textStyle="bold" />
@@ -29,29 +30,28 @@
             <RadioGroup
                 android:id="@+id/rg_answer"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:layout_marginTop="5dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
                 android:layout_weight="1.79" >
 
                 <RadioButton
                     android:id="@+id/radio0"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="RadioButton"
                     android:textAppearance="?android:attr/textAppearanceSmall" />
 
                 <RadioButton
                     android:id="@+id/radio1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="RadioButton"
                     android:textAppearance="?android:attr/textAppearanceSmall" />
 
                 <RadioButton
                     android:id="@+id/radio2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="RadioButton"
                     android:textAppearance="?android:attr/textAppearanceSmall" />
 
                 <RadioButton
@@ -59,7 +59,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="80dp"
-                    android:text="RadioButton"
                     android:textAppearance="?android:attr/textAppearanceSmall" />
             </RadioGroup>
         </LinearLayout>
@@ -71,6 +70,8 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
         android:background="#ebe8e0"
         android:orientation="vertical" >
 
@@ -83,22 +84,25 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
-                android:src="@drawable/kiribtn" />
+                android:src="@drawable/kiribtn"
+                tools:ignore="ContentDescription" />
 
             <ImageButton
                 android:id="@+id/btn_done"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.71"
                 android:background="@android:color/transparent"
-                android:src="@drawable/finishbtn" />
+                android:src="@drawable/finishbtn"
+                tools:ignore="ContentDescription" />
 
             <ImageButton
                 android:id="@+id/btn_next"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
-                android:src="@drawable/kananbtn" />
+                android:src="@drawable/kananbtn"
+                tools:ignore="ContentDescription" />
         </LinearLayout>
     </LinearLayout>
 
@@ -108,8 +112,10 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
         android:background="#e54b4f"
-        android:orientation="vertical" >
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -119,33 +125,47 @@
                 android:id="@+id/tv_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:layout_marginTop="4dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
+                android:textColor="@android:color/white"
+                tools:text="Masya" />
 
             <TextView
                 android:id="@+id/tv_no"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.76"
+                android:textColor="@android:color/white"
+                android:textStyle="bold"
+                android:textSize="24sp"
                 android:gravity="center"
-                android:text="TextView" />
+                tools:text="1" />
 
             <TextView
                 android:id="@+id/tv_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:layout_marginRight="8dp"
+                android:layout_marginEnd="8dp"
+                android:textColor="@android:color/white"
+                tools:text="07 - 05 - 2020" />
         </LinearLayout>
 
         <TextView
             android:id="@+id/tv_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:text="TextView" />
+            android:layout_gravity="end"
+            android:layout_marginRight="8dp"
+            android:layout_marginEnd="8dp"
+            android:textColor="@android:color/white"
+            tools:text="22:22:22" />
 
         <ImageView
             android:id="@+id/gambarKuis"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            tools:ignore="ContentDescription" />
     </LinearLayout>
 </RelativeLayout>

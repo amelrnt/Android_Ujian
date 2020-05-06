@@ -27,6 +27,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import lat.ta.ujianpemrograman.model.Question;
 
+import static lat.ta.ujianpemrograman.PilihActionActivity.EXTRA_ID_PACKET;
 import static lat.ta.ujianpemrograman.Utils.createDialog;
 import static lat.ta.ujianpemrograman.Utils.setFullScreen;
 import static lat.ta.ujianpemrograman.Utils.showMessage;
@@ -40,6 +41,7 @@ public class QuestionActivity extends AppCompatActivity implements
 
     private static final String TAG = QuestionActivity.class.getSimpleName();
 
+    private int paket = -1;
     private int position = 1;
     private List<Question> questionList = new ArrayList<>();
     private Map<Integer, Integer> answer = new HashMap<>();
@@ -82,6 +84,7 @@ public class QuestionActivity extends AppCompatActivity implements
         }
 
         String extra = getIntent().getStringExtra(EXTRA_QUESTION);
+        paket = getIntent().getIntExtra(EXTRA_ID_PACKET, -1);
         viewModel = new ViewModelProvider(this).get(QuestionViewModel.class);
         viewModel.getQuestions(extra).observe(this, questions -> {
             questionList.addAll(questions);
@@ -130,18 +133,26 @@ public class QuestionActivity extends AppCompatActivity implements
     }
 
     private void done() {
-        // TODO : Calculate and show result
-        for (Question q: questionList) {
-
+        float point = 100f / questionList.size();
+        float score = 0f;
+        for (Map.Entry<Integer, Integer> entry: answer.entrySet()) {
+            int key = questionList.get(entry.getKey()).getCorrectAnswer();
+            if (entry.getValue().equals(key)) {
+                score += point;
+            }
         }
+
+        Log.i(TAG, "done: point="+ point);
+        Log.i(TAG, "done: score="+ score);
+
+        viewModel.menyimpanNilai(score, paket);
     }
 
     @SuppressLint("SetTextI18n")
     private void setQuestionAndChoices() {
         new Handler().post(() -> {
             Question question = questionList.get(position - 1);
-            String labelNoQuestion = getResources().getString(R.string.label_no_question);
-            tvNo.setText(labelNoQuestion + " " + position);
+            tvNo.setText(String.valueOf(position));
             tvQuestion.setText(question.getQuestion());
 
             Log.i(TAG, "setQuestionAndChoices: Data ke-"+ (position - 1));

@@ -21,7 +21,7 @@ import static lat.ta.ujianpemrograman.Utils.setFullScreen;
 public class PilihPelajaranActivity extends AppCompatActivity implements
     Adapter.OnBinding<String> {
 
-    private List<String> data;
+    private int paket = -1;
 
     @BindView(R.id.recyclerview) RecyclerView recyclerView;
 
@@ -32,9 +32,11 @@ public class PilihPelajaranActivity extends AppCompatActivity implements
         setContentView(R.layout.activity_pilihpelajaran);
         ButterKnife.bind(this);
 
-        String[] strings = getResources().getStringArray(R.array.pilihan_pelajaran);
-        data = Arrays.asList(strings);
+        if (getIntent() == null) finish();
 
+        paket = getIntent().getIntExtra(PilihActionActivity.EXTRA_ID_PACKET, -1);
+        String[] strings = getResources().getStringArray(R.array.pilihan_pelajaran);
+        List<String> data = Arrays.asList(strings);
         Adapter<String> adapter = new Adapter<>(this, R.layout.item_button, data);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -49,6 +51,7 @@ public class PilihPelajaranActivity extends AppCompatActivity implements
             Intent intent = new Intent(PilihPelajaranActivity.this,
                     QuestionActivity.class);
             intent.putExtra(QuestionActivity.EXTRA_QUESTION, obj);
+            intent.putExtra(PilihActionActivity.EXTRA_ID_PACKET, paket);
             startActivity(intent);
         });
     }
