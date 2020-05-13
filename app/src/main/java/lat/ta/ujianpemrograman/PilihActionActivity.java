@@ -31,7 +31,7 @@ public class PilihActionActivity extends AppCompatActivity {
     }
 
     @OnClick(R.id.bt_materi) void handleShowMateri() {
-        Intent intent = new Intent(this, Pilihmateri.class);
+        Intent intent = new Intent(this, PilihMateriActivity.class);
         intent.putExtra(EXTRA_ID_PACKET, paket);
 
         startActivity(intent);
