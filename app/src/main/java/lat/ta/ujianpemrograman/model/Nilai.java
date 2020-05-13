@@ -2,14 +2,10 @@ package lat.ta.ujianpemrograman.model;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
-import androidx.room.PrimaryKey;
 
-@Entity(tableName = "nilai")
+@Entity(tableName = "nilai",
+        primaryKeys = {"kategori", "paket"})
 public class Nilai {
-
-    @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name = "id")
-    private int id;
 
     @ColumnInfo(name = "paket")
     private int paket;
@@ -17,13 +13,8 @@ public class Nilai {
     @ColumnInfo(name = "nilai")
     private float nilai;
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
+    @ColumnInfo(name = "kategori")
+    private int category;
 
     public int getPaket() {
         return paket;
@@ -39,5 +30,13 @@ public class Nilai {
 
     public void setNilai(float nilai) {
         this.nilai = nilai;
+    }
+
+    public int getCategory() {
+        return category;
+    }
+
+    public void setCategory(int category) {
+        this.category = category;
     }
 }

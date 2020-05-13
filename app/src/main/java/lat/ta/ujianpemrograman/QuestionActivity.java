@@ -145,7 +145,8 @@ public class QuestionActivity extends AppCompatActivity implements
         Log.i(TAG, "done: point="+ point);
         Log.i(TAG, "done: score="+ score);
 
-        viewModel.menyimpanNilai(score, paket);
+        viewModel.menyimpanNilai(score, paket, questionList.get(0).getCategory());
+        finish();
     }
 
     @SuppressLint("SetTextI18n")

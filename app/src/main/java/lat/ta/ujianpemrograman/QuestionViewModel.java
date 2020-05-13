@@ -24,10 +24,11 @@ public class QuestionViewModel extends AndroidViewModel {
         nilaiRepository = new NilaiRepository(application);
     }
 
-    void menyimpanNilai(float nilai, int paket) {
+    void menyimpanNilai(float nilai, int paket, int category) {
         Nilai param = new Nilai();
         param.setNilai(nilai);
         param.setPaket(paket);
+        param.setCategory(category);
 
         nilaiRepository.save(param);
     }

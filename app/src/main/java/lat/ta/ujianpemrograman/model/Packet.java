@@ -2,6 +2,7 @@ package lat.ta.ujianpemrograman.model;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import com.google.gson.annotations.Expose;
@@ -24,6 +25,7 @@ public class Packet {
     public Packet() {
     }
 
+    @Ignore
     public Packet(int id, String name) {
         this.id = id;
         this.name = name;

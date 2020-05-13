@@ -32,7 +32,9 @@ public class PilihPelajaranActivity extends AppCompatActivity implements
         setContentView(R.layout.activity_pilihpelajaran);
         ButterKnife.bind(this);
 
-        if (getIntent() == null) finish();
+        if (getIntent() == null) {
+            finish();
+        }
 
         paket = getIntent().getIntExtra(PilihActionActivity.EXTRA_ID_PACKET, -1);
         String[] strings = getResources().getStringArray(R.array.pilihan_pelajaran);

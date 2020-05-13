@@ -1,0 +1,9 @@
+          Data Kategori
+==================================
+1   Pemrograman Web
+2   Pemrograman Android
+3   Pemrograman Jaringan Komputer
+4   Pemrograman Algoritma
+5   Pemrograman Basis Data
+6   Pemrograman Berbasis Object
+7   Pemrograman GUI

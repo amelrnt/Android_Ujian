@@ -2,6 +2,7 @@ package lat.ta.ujianpemrograman.model;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import com.google.gson.annotations.Expose;
@@ -26,6 +27,7 @@ public class Version {
     @ColumnInfo(name = "version")
     private int version;
 
+    @Ignore
     public Version(int idVersion, int detail, int version) {
         this.idVersion = idVersion;
         this.detail = detail;
