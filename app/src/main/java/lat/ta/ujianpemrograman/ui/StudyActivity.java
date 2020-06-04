@@ -1,4 +1,4 @@
-package lat.ta.ujianpemrograman;
+package lat.ta.ujianpemrograman.ui;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -8,8 +8,9 @@ import androidx.annotation.Nullable;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import lat.ta.ujianpemrograman.R;
 
-public class LihatMateriActivity extends Activity {
+public class StudyActivity extends Activity {
 
     public static final String EXTRA_MATERI = "EXTRA_MATERI";
 
@@ -18,13 +19,13 @@ public class LihatMateriActivity extends Activity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_lihat_materi);
+        setContentView(R.layout.activity_study);
         ButterKnife.bind(this);
     }
 
 //    protected void onCreate(Bundle savedInstanceState) {
 //        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_lihat_materi);
+//        setContentView(R.layout.activity_study);
 //        dbHelper = new DBHelper(this);
 //        text1 = (TextView) findViewById(R.id.txt_materi);
 //        btn1 = (Button)findViewById(R.id.btnkembali);

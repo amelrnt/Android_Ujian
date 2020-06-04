@@ -8,7 +8,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:background="@drawable/bgsc3"
-    tools:context="lat.ta.ujianpemrograman.NilaiActivity">
+    tools:context="lat.ta.ujianpemrograman.ui.CourseActivity">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview"
@@ -16,6 +16,5 @@
         android:layout_height="match_parent"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_above="@+id/bt_nilaiakhir" />
+        android:layout_alignParentEnd="true" />
 </RelativeLayout>

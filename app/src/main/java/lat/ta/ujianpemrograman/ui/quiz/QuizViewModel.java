@@ -1,4 +1,4 @@
-package lat.ta.ujianpemrograman;
+package lat.ta.ujianpemrograman.ui.quiz;
 
 import android.app.Application;
 
@@ -8,17 +8,18 @@ import androidx.lifecycle.LiveData;
 
 import java.util.List;
 
+import lat.ta.ujianpemrograman.App;
 import lat.ta.ujianpemrograman.model.Nilai;
 import lat.ta.ujianpemrograman.model.Question;
 import lat.ta.ujianpemrograman.repository.NilaiRepository;
 import lat.ta.ujianpemrograman.repository.QuestionRepository;
 
-public class QuestionViewModel extends AndroidViewModel {
+public class QuizViewModel extends AndroidViewModel {
 
     private QuestionRepository questionRepository;
     private NilaiRepository nilaiRepository;
 
-    public QuestionViewModel(@NonNull Application application) {
+    public QuizViewModel(@NonNull Application application) {
         super(application);
         questionRepository = new QuestionRepository(application);
         nilaiRepository = new NilaiRepository(application);
@@ -37,17 +38,7 @@ public class QuestionViewModel extends AndroidViewModel {
         App.setSharedPreferences(App.KEY_USERNAME, name);
     }
 
-    LiveData<List<Question>> getQuestions(String extra) {
-        int course = 1;
-        String[] courses = getApplication().getResources()
-                .getStringArray(R.array.pilihan_pelajaran);
-
-        for (int i=0; i < courses.length-1; i++) {
-            if (extra.equals(courses[i+1])) {
-                course = i;
-            }
-        }
-
+    LiveData<List<Question>> getQuestions(int course) {
         return questionRepository.getAll(course);
     }
 }

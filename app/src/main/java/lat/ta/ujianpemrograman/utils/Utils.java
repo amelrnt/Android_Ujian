@@ -1,4 +1,4 @@
-package lat.ta.ujianpemrograman;
+package lat.ta.ujianpemrograman.utils;
 
 import android.app.Activity;
 import android.content.Context;
@@ -24,7 +24,7 @@ import lat.ta.ujianpemrograman.api.ApiHelper;
 
 public class Utils {
 
-    public static String TAG = Utils.class.getSimpleName();
+    private static String TAG = Utils.class.getSimpleName();
 
     public static AlertDialog createDialog(Context context, String message) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
@@ -106,7 +106,7 @@ public class Utils {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
     }
 
-    interface DialogViewBinding {
+    public interface DialogViewBinding {
         void bind(View view, AlertDialog dialog);
     }
 }

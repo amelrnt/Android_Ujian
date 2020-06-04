@@ -1,4 +1,4 @@
-package lat.ta.ujianpemrograman;
+package lat.ta.ujianpemrograman.ui.quiz;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -25,21 +25,23 @@ import java.util.Map;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import lat.ta.ujianpemrograman.App;
+import lat.ta.ujianpemrograman.R;
 import lat.ta.ujianpemrograman.model.Question;
+import lat.ta.ujianpemrograman.utils.Timer;
 
-import static lat.ta.ujianpemrograman.PilihActionActivity.EXTRA_ID_PACKET;
-import static lat.ta.ujianpemrograman.Utils.createDialog;
-import static lat.ta.ujianpemrograman.Utils.setFullScreen;
-import static lat.ta.ujianpemrograman.Utils.showMessage;
+import static lat.ta.ujianpemrograman.ui.ActionActivity.EXTRA_ID_PACKET;
+import static lat.ta.ujianpemrograman.utils.Utils.createDialog;
+import static lat.ta.ujianpemrograman.utils.Utils.setFullScreen;
+import static lat.ta.ujianpemrograman.utils.Utils.showMessage;
 
-public class QuestionActivity extends AppCompatActivity implements
-        RadioGroup.OnCheckedChangeListener {
+public class QuizActivity extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener {
 
-    public static String EXTRA_QUESTION = "EXTRA_QUESTION";
+    public static String EXTRA_COURSE = "EXTRA_COURSE";
 
-    private QuestionViewModel viewModel;
+    private QuizViewModel viewModel;
 
-    private static final String TAG = QuestionActivity.class.getSimpleName();
+    private static final String TAG = QuizActivity.class.getSimpleName();
 
     private int paket = -1;
     private int position = 1;
@@ -75,7 +77,7 @@ public class QuestionActivity extends AppCompatActivity implements
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setFullScreen(getWindow());
-        setContentView(R.layout.activity_question);
+        setContentView(R.layout.activity_quiz);
         ButterKnife.bind(this);
 
         if (getIntent() == null) {
@@ -83,9 +85,9 @@ public class QuestionActivity extends AppCompatActivity implements
             return;
         }
 
-        String extra = getIntent().getStringExtra(EXTRA_QUESTION);
+        int extra = getIntent().getIntExtra(EXTRA_COURSE, 0);
         paket = getIntent().getIntExtra(EXTRA_ID_PACKET, -1);
-        viewModel = new ViewModelProvider(this).get(QuestionViewModel.class);
+        viewModel = new ViewModelProvider(this).get(QuizViewModel.class);
         viewModel.getQuestions(extra).observe(this, questions -> {
             questionList.addAll(questions);
             setQuestionAndChoices();
@@ -103,7 +105,7 @@ public class QuestionActivity extends AppCompatActivity implements
     @SuppressLint("SimpleDateFormat")
     private void start() {
         if (App.getUsername().isEmpty()) {
-            createDialog(this, R.layout.nama, (dialogView, alertDialog) -> {
+            createDialog(this, R.layout.dialog_input_name, (dialogView, alertDialog) -> {
                 EditText edtName = dialogView.findViewById(R.id.editTextNama);
                 Button btnOk =  dialogView.findViewById(R.id.buttonOK);
                 btnOk.setOnClickListener(view -> {
@@ -114,7 +116,7 @@ public class QuestionActivity extends AppCompatActivity implements
                         start();
                     } else {
                         String emptyInput = getResources().getString(R.string.warning_empty_input);
-                        showMessage(QuestionActivity.this, emptyInput);
+                        showMessage(QuizActivity.this, emptyInput);
                     }
                 });
             });

@@ -1,4 +1,4 @@
-package lat.ta.ujianpemrograman;
+package lat.ta.ujianpemrograman.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,10 +7,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import lat.ta.ujianpemrograman.App;
+import lat.ta.ujianpemrograman.R;
+import lat.ta.ujianpemrograman.ui.packet.PacketActivity;
 
-import static lat.ta.ujianpemrograman.Utils.createDialog;
-import static lat.ta.ujianpemrograman.Utils.setFullScreen;
-import static lat.ta.ujianpemrograman.Utils.showMessage;
+import static lat.ta.ujianpemrograman.utils.Utils.setFullScreen;
+import static lat.ta.ujianpemrograman.utils.Utils.showMessage;
 
 /**
  * @class MainActivity merupakan sebuah activity
@@ -24,7 +26,7 @@ import static lat.ta.ujianpemrograman.Utils.showMessage;
 public class MainActivity extends AppCompatActivity {
 
 	@OnClick(R.id.btn_start) void start() {
-		Intent intent = new Intent(getApplicationContext(), ListPacketActivity.class);
+		Intent intent = new Intent(getApplicationContext(), PacketActivity.class);
 		startActivity(intent);
 	}
 
@@ -39,14 +41,7 @@ public class MainActivity extends AppCompatActivity {
 		setFullScreen(getWindow());
 		setContentView(R.layout.activity_main);
 		ButterKnife.bind(this);
-
 		showMessage(this, "Version "+ App.getVersion());
-	}
-
-	@Override
-	public void onBackPressed() {
-		String message = getResources().getString(R.string.warning_back);
-		createDialog(getApplicationContext(), message).show();
 	}
 }
 

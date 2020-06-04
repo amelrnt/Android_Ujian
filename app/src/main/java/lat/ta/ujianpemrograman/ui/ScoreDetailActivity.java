@@ -1,8 +1,8 @@
-package lat.ta.ujianpemrograman;
+package lat.ta.ujianpemrograman.ui;
 
 import android.app.Activity;
 
-public class LihatNilaiActivity extends Activity {
+public class ScoreDetailActivity extends Activity {
 //    protected Cursor cursor;
 //    DBHelper dbHelper;
 //    TextView text1, text2, text3, text4;
@@ -13,7 +13,7 @@ public class LihatNilaiActivity extends Activity {
 //    @Override
 //    protected void onCreate(Bundle savedInstanceState) {
 //        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_lihat_nilai);
+//        setContentView(R.layout.activity_score_details);
 //        dbHelper = new DBHelper(this);
 //        text1 = (TextView) findViewById(R.id.txt_tgl);
 //        text2 = (TextView) findViewById(R.id.txt_benar);
@@ -50,7 +50,7 @@ public class LihatNilaiActivity extends Activity {
 //        public void onClick(View view) {
 //            switch (view.getId()) {
 //                case R.id.btnkembali:
-//                    intent = new Intent(context, ListPacketActivity.class);
+//                    intent = new Intent(context, PacketActivity.class);
 //                    startActivity(intent);
 //                    break;
 //

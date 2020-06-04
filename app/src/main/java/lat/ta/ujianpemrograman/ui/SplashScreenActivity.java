@@ -1,4 +1,4 @@
-package lat.ta.ujianpemrograman;
+package lat.ta.ujianpemrograman.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +11,8 @@ import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
+import lat.ta.ujianpemrograman.App;
+import lat.ta.ujianpemrograman.R;
 import lat.ta.ujianpemrograman.model.Packet;
 import lat.ta.ujianpemrograman.model.Question;
 import lat.ta.ujianpemrograman.model.Version;
@@ -18,8 +20,8 @@ import lat.ta.ujianpemrograman.repository.PacketRepository;
 import lat.ta.ujianpemrograman.repository.QuestionRepository;
 import lat.ta.ujianpemrograman.repository.VersionRepository;
 
-import static lat.ta.ujianpemrograman.Utils.setFullScreen;
-import static lat.ta.ujianpemrograman.Utils.showMessage;
+import static lat.ta.ujianpemrograman.utils.Utils.setFullScreen;
+import static lat.ta.ujianpemrograman.utils.Utils.showMessage;
 
 /**
  * @class SplashScreenActivity merupakan sebuah activity yang berjalan
@@ -58,7 +60,7 @@ public class SplashScreenActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setFullScreen(getWindow());
-        setContentView(R.layout.activity_splash);
+        setContentView(R.layout.activity_splashscreen);
 
         /* Run New Thread At Background */
         new Handler().postDelayed(run, 3000);

@@ -1,4 +1,4 @@
-package lat.ta.ujianpemrograman;
+package lat.ta.ujianpemrograman.ui;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -12,16 +12,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import lat.ta.ujianpemrograman.R;
 import lat.ta.ujianpemrograman.model.Nilai;
 import lat.ta.ujianpemrograman.repository.NilaiRepository;
-import lat.ta.ujianpemrograman.ui.Adapter;
 
-import static lat.ta.ujianpemrograman.PilihActionActivity.EXTRA_ID_PACKET;
-import static lat.ta.ujianpemrograman.Utils.setFullScreen;
+import static lat.ta.ujianpemrograman.ui.ActionActivity.EXTRA_ID_PACKET;
+import static lat.ta.ujianpemrograman.utils.Utils.setFullScreen;
 
-public class NilaiActivity extends AppCompatActivity implements Adapter.OnBinding<Nilai> {
-
-    private NilaiRepository nilaiRepository;
+public class ScoreActivity extends AppCompatActivity implements Adapter.OnBinding<Nilai> {
 
     @BindView(R.id.recyclerview) RecyclerView recyclerView;
 
@@ -29,7 +27,7 @@ public class NilaiActivity extends AppCompatActivity implements Adapter.OnBindin
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setFullScreen(getWindow());
-        setContentView(R.layout.activity_nilai);
+        setContentView(R.layout.activity_score);
         ButterKnife.bind(this);
 
         if (getIntent() == null) {
@@ -39,7 +37,7 @@ public class NilaiActivity extends AppCompatActivity implements Adapter.OnBindin
         Adapter<Nilai> adapter = new Adapter<>(this, R.layout.item_nilai, null);
 
         int paket = getIntent().getIntExtra(EXTRA_ID_PACKET, -1);
-        nilaiRepository = new NilaiRepository(this);
+        NilaiRepository nilaiRepository = new NilaiRepository(this);
         nilaiRepository.getNilai(paket).observe(this, adapter::setNewData);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

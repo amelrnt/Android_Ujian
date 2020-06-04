@@ -1,11 +1,13 @@
-package lat.ta.ujianpemrograman;
+package lat.ta.ujianpemrograman.ui;
 
 
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import static lat.ta.ujianpemrograman.Utils.setFullScreen;
+import lat.ta.ujianpemrograman.R;
+
+import static lat.ta.ujianpemrograman.utils.Utils.setFullScreen;
 
 public class AboutActivity extends AppCompatActivity {
 

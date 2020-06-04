@@ -14,8 +14,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static lat.ta.ujianpemrograman.Utils.isConnected;
-import static lat.ta.ujianpemrograman.Utils.showMessage;
+import static lat.ta.ujianpemrograman.utils.Utils.isConnected;
+import static lat.ta.ujianpemrograman.utils.Utils.showMessage;
 
 public class Repository<T> implements Callback<T> {
 

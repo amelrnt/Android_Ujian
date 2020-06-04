@@ -1,4 +1,4 @@
-package lat.ta.ujianpemrograman;
+package lat.ta.ujianpemrograman.utils;
 
 import android.annotation.SuppressLint;
 import android.os.CountDownTimer;
@@ -49,7 +49,7 @@ public class Timer extends CountDownTimer {
         this.listener = listener;
     }
 
-    interface OnChangeListener {
+    public interface OnChangeListener {
         void onChange(String time);
     }
 }

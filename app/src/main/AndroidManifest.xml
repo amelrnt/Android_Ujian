@@ -18,7 +18,7 @@
         android:name=".App"
         android:allowClearUserData="true">
 
-        <activity android:name=".SplashScreenActivity" >
+        <activity android:name=".ui.SplashScreenActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -26,16 +26,15 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".MainActivity" />
-        <activity android:name=".ListPacketActivity" />
-        <activity android:name=".AboutActivity" />
-        <activity android:name=".PilihActionActivity" />
-        <activity android:name=".PilihPelajaranActivity" />
-        <activity android:name=".NilaiActivity" />
-        <activity android:name=".LihatNilaiActivity" />
-        <activity android:name=".QuestionActivity" />
-        <activity android:name=".PilihMateriActivity" />
-        <activity android:name=".LihatMateriActivity" />
+        <activity android:name=".ui.MainActivity" />
+        <activity android:name=".ui.packet.PacketActivity" />
+        <activity android:name=".ui.AboutActivity" />
+        <activity android:name=".ui.ActionActivity" />
+        <activity android:name=".ui.ScoreActivity" />
+        <activity android:name=".ui.ScoreDetailActivity" />
+        <activity android:name=".ui.quiz.QuizActivity" />
+        <activity android:name=".ui.CourseActivity" />
+        <activity android:name=".ui.StudyActivity" />
     </application>
 
 </manifest>
