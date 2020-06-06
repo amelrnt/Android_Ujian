@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativeLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context="lat.ta.ujianpemrograman.ui.ScoreDetailActivity">
+
+    <TextView
+        android:id="@+id/lbl_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Hasil Ujian Terakhir"
+        android:textAllCaps="true"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/lbl_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/tv_questions"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="24dp"
+        android:text="Nama"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lbl_title" />
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/tv_questions"
+        android:layout_alignStart="@+id/tv_questions"
+        android:layout_alignLeft="@+id/tv_questions"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toLeftOf="@+id/tv_questions"
+        app:layout_constraintStart_toStartOf="@+id/tv_questions"
+        app:layout_constraintTop_toTopOf="@+id/lbl_name"
+        tools:text="Juang Kebenaran Haqiqi Abdul Aziz" />
+
+    <TextView
+        android:id="@+id/lbl_questions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lbl_title"
+        android:layout_marginTop="8dp"
+        android:text="Jumlah Soal"
+        android:textSize="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/lbl_name"
+        app:layout_constraintTop_toBottomOf="@+id/tv_name" />
+
+    <TextView
+        android:id="@+id/tv_questions"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
+        android:textSize="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/lbl_questions"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/lbl_correct_answer"
+        app:layout_constraintTop_toTopOf="@+id/lbl_questions"
+        tools:text="20" />
+
+    <TextView
+        android:id="@+id/lbl_correct_answer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lbl_questions"
+        android:layout_marginTop="8dp"
+        android:text="Jawaban Benar"
+        android:textSize="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/lbl_questions"
+        app:layout_constraintTop_toBottomOf="@+id/tv_questions" />
+
+    <TextView
+        android:id="@+id/tv_corrects"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/tv_questions"
+        android:layout_alignLeft="@+id/tv_questions"
+        android:layout_alignTop="@+id/lbl_correct_answer"
+        android:textSize="16dp"
+        app:layout_constraintEnd_toEndOf="@+id/tv_questions"
+        app:layout_constraintLeft_toLeftOf="@+id/tv_questions"
+        app:layout_constraintStart_toStartOf="@+id/tv_questions"
+        app:layout_constraintTop_toTopOf="@+id/lbl_correct_answer"
+        tools:text="20" />
+
+    <TextView
+        android:id="@+id/tv_score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:textAlignment="center"
+        android:textColor="@android:color/holo_blue_dark"
+        android:textSize="50dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/lbl_title"
+        app:layout_constraintStart_toStartOf="@+id/lbl_title"
+        app:layout_constraintTop_toBottomOf="@+id/lbl_datetime"
+        tools:text="100" />
+
+    <TextView
+        android:id="@+id/lbl_datetime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lbl_correct_answer"
+        android:layout_marginTop="8dp"
+        android:text="Tanggal"
+        android:textSize="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/lbl_correct_answer"
+        app:layout_constraintTop_toBottomOf="@+id/tv_corrects" />
+
+    <TextView
+        android:id="@+id/tv_datetime"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/tv_corrects"
+        android:layout_alignLeft="@+id/tv_corrects"
+        android:layout_alignTop="@+id/lbl_datetime"
+        android:textSize="16dp"
+        app:layout_constraintEnd_toEndOf="@+id/tv_questions"
+        app:layout_constraintLeft_toLeftOf="@+id/tv_corrects"
+        app:layout_constraintStart_toStartOf="@+id/tv_questions"
+        app:layout_constraintTop_toTopOf="@+id/lbl_datetime"
+        tools:text="20-20-2020 00:00:00" />
+
+    <Button
+        android:id="@+id/btn_close"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="32dp"
+        android:background="#E54A4E"
+        android:text="Close"
+        android:textAllCaps="false"
+        android:textColor="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/tv_datetime"
+        app:layout_constraintStart_toStartOf="@+id/lbl_datetime"
+        app:layout_constraintTop_toBottomOf="@+id/tv_score" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
