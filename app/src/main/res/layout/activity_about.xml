@@ -5,6 +5,4 @@
     android:layout_gravity="bottom"
     android:background="@drawable/tentang_kami"
     android:gravity="bottom"
-    android:orientation="vertical" >
-
-</RelativeLayout>
+    android:orientation="vertical" />

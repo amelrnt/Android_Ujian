@@ -15,7 +15,6 @@ import lat.ta.ujianpemrograman.App;
 import lat.ta.ujianpemrograman.R;
 import lat.ta.ujianpemrograman.model.Packet;
 import lat.ta.ujianpemrograman.model.Question;
-import lat.ta.ujianpemrograman.model.Version;
 import lat.ta.ujianpemrograman.repository.PacketRepository;
 import lat.ta.ujianpemrograman.repository.QuestionRepository;
 import lat.ta.ujianpemrograman.repository.VersionRepository;
@@ -68,19 +67,22 @@ public class SplashScreenActivity extends AppCompatActivity {
 
     private int checkUpdate() throws ExecutionException, InterruptedException {
         VersionRepository repository = new VersionRepository(this);
-        Future<Version> future = repository.checkVersionSync();
+        Future<Integer> future = repository.checkVersionSync();
         if (future != null) {
-            Version version = future.get();
+            Integer version = future.get();
             Log.i(TAG, "checkUpdate: App version="+ App.getVersion());
-            Log.i(TAG, "checkUpdate: Database version="+ version.getVersion());
+            Log.i(TAG, "checkUpdate: Database version="+ version);
 
-            if (App.getVersion() != version.getVersion()) {
+            if (App.getVersion() != version) {
                 updatingPacket();
-                App.setSharedPreferences(App.KEY_VERSION, version.getVersion());
-                App.setSharedPreferences(App.KEY_VERSION_DETAIL, version.getDetail());
+                App.setSharedPreferences(App.KEY_VERSION, version);
                 showMessage(SplashScreenActivity.this, getResources().getString(R.string.info_version_updating));
             }
 
+            return UP_TO_DATE;
+        }
+
+        if (App.getVersion() != -1) {
             return UP_TO_DATE;
         }
 

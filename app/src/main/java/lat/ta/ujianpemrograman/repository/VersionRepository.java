@@ -9,16 +9,14 @@ import retrofit2.Response;
 
 public class VersionRepository extends Repository<Version> {
 
-    private String TAG = VersionRepository.class.getSimpleName();
-
     public VersionRepository(Context context) {
         super(context);
     }
 
-    public Future<Version> checkVersionSync() {
+    public Future<Integer> checkVersionSync() {
         if (isOnline()) return executor.submit(() -> {
             Response<Version> response = service.getVersion().execute();
-            return response.body();
+            return response.body().getVersion();
         });
 
         return null;

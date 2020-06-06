@@ -56,5 +56,4 @@ public class QuestionRepository extends Repository<Question> {
         Log.i(TAG, "save: Kategori="+ question.getCategory());
         return executor.submit(() -> dao.add(question));
     }
-
 }
