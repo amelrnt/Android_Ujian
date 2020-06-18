@@ -99,6 +99,8 @@ public class QuizActivity extends AppCompatActivity implements RadioGroup.OnChec
         mViewModel.scoreModel.setCategory(idCategory);
         mViewModel.getQuestions(idCategory).observe(this, questions -> {
             if (!isTakeQuiz) {
+                tvNo.setText("Contoh Soal");
+
                 List<Question> _questions = new ArrayList<>();
                 for (int i=0; i < 5; i++) {
                     Random random = new Random();

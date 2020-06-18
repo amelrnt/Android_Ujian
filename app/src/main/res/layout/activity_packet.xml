@@ -1,28 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/linearLayout"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:layout_gravity="bottom"
     android:background="@drawable/bgsc1"
-    android:gravity="bottom"
-    android:orientation="vertical" >
+    android:gravity="bottom">
 
         <TextView
             android:id="@+id/headerList"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:gravity="center_horizontal"
             android:paddingBottom="15dp"
             android:text="List Paket Soal"
             android:textAllCaps="true"
-            android:gravity="center_horizontal"
-            android:layout_marginTop="8dp"
-            android:textColor="@android:color/white"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textSize="30sp" />
+            android:textColor="@android:color/white"
+            android:textSize="30sp"
+            app:layout_constraintBottom_toTopOf="@+id/listSoal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/listSoal"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" >
-        </androidx.recyclerview.widget.RecyclerView>
-</LinearLayout>
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/headerList"></androidx.recyclerview.widget.RecyclerView>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,4 +2,8 @@
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorAccent">@android:color/white</item>
     </style>
+
+    <style name="AppThemeRedAccent" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorAccent">#E54A4E</item>
+    </style>
 </resources>
