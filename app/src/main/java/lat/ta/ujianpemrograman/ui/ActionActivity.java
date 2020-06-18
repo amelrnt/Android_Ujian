@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import lat.ta.ujianpemrograman.R;
+import lat.ta.ujianpemrograman.ui.quiz.QuizActivity;
 
 import static lat.ta.ujianpemrograman.utils.Utils.setFullScreen;
 
@@ -18,25 +19,19 @@ public class ActionActivity extends AppCompatActivity {
     private int paket = -1;
 
     @OnClick(R.id.bt_mulai) void handleStart() {
-        Intent intent = new Intent(this, CourseActivity.class);
-        intent.putExtra(EXTRA_ID_PACKET, paket);
-        intent.putExtra(CourseActivity.EXTRA_ACTION_PACKET, CourseActivity.KEY_TAKE_QUIZ);
-
+        Intent intent = setIntent(CourseActivity.class);
+        intent.putExtra(CourseActivity.EXTRA_ACTION_PACKET, QuizActivity.KEY_TAKE_QUIZ);
         startActivity(intent);
     }
 
     @OnClick(R.id.bt_nilaiakhir) void handleResult() {
-        Intent intent = new Intent(this, ScoreActivity.class);
-        intent.putExtra(EXTRA_ID_PACKET, paket);
-
+        Intent intent = setIntent(ScoreActivity.class);
         startActivity(intent);
     }
 
     @OnClick(R.id.bt_materi) void handleShowMateri() {
-        Intent intent = new Intent(this, CourseActivity.class);
-        intent.putExtra(EXTRA_ID_PACKET, paket);
-        intent.putExtra(CourseActivity.EXTRA_ACTION_PACKET, CourseActivity.KEY_EXAMPLE);
-
+        Intent intent = setIntent(CourseActivity.class);
+        intent.putExtra(CourseActivity.EXTRA_ACTION_PACKET, QuizActivity.KEY_EXAMPLE);
         startActivity(intent);
     }
 
@@ -47,7 +42,16 @@ public class ActionActivity extends AppCompatActivity {
         setContentView(R.layout.activity_action);
         ButterKnife.bind(this);
 
-        if (getIntent() == null) finish();
+        if (getIntent() == null) {
+            finish();
+        }
+
         paket = getIntent().getIntExtra(EXTRA_ID_PACKET, -1);
+    }
+
+    private Intent setIntent(Class cls) {
+        Intent intent = new Intent(this, cls);
+        intent.putExtra(EXTRA_ID_PACKET, paket);
+        return intent;
     }
 }

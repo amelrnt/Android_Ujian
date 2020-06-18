@@ -8,7 +8,7 @@ import androidx.lifecycle.MutableLiveData;
 import java.util.List;
 
 import lat.ta.ujianpemrograman.database.NilaiDao;
-import lat.ta.ujianpemrograman.model.Nilai;
+import lat.ta.ujianpemrograman.model.ScoreModel;
 
 public class NilaiRepository extends Repository {
 
@@ -19,13 +19,13 @@ public class NilaiRepository extends Repository {
         dao = database.getNilaiDao();
     }
 
-    public LiveData<List<Nilai>> getNilai(int paket) {
-        MutableLiveData<List<Nilai>> liveData = new MutableLiveData<>();
+    public LiveData<List<ScoreModel>> getNilai(int paket) {
+        MutableLiveData<List<ScoreModel>> liveData = new MutableLiveData<>();
         executor.submit(() -> liveData.postValue(dao.get(paket)));
         return liveData;
     }
 
-    public void save(Nilai nilai) {
-        executor.submit(() -> dao.save(nilai));
+    public void save(ScoreModel scoreModel) {
+        executor.submit(() -> dao.save(scoreModel));
     }
 }

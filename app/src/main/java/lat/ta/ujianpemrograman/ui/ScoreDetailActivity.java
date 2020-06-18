@@ -13,7 +13,7 @@ public class ScoreDetailActivity extends Activity {
 //    @Override
 //    protected void onCreate(Bundle savedInstanceState) {
 //        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_score_details);
+//        setContentView(R.layout.dialog_score);
 //        dbHelper = new DBHelper(this);
 //        text1 = (TextView) findViewById(R.id.txt_tgl);
 //        text2 = (TextView) findViewById(R.id.txt_benar);

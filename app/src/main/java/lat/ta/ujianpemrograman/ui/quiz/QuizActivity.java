@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -15,12 +14,11 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -28,7 +26,10 @@ import butterknife.OnClick;
 import lat.ta.ujianpemrograman.App;
 import lat.ta.ujianpemrograman.R;
 import lat.ta.ujianpemrograman.model.Question;
+import lat.ta.ujianpemrograman.model.ScoreModel;
+import lat.ta.ujianpemrograman.ui.CourseActivity;
 import lat.ta.ujianpemrograman.utils.Timer;
+import lat.ta.ujianpemrograman.utils.Utils;
 
 import static lat.ta.ujianpemrograman.ui.ActionActivity.EXTRA_ID_PACKET;
 import static lat.ta.ujianpemrograman.utils.Utils.createDialog;
@@ -37,16 +38,18 @@ import static lat.ta.ujianpemrograman.utils.Utils.showMessage;
 
 public class QuizActivity extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener {
 
-    public static String EXTRA_COURSE = "EXTRA_COURSE";
-
-    private QuizViewModel viewModel;
+    public static final String EXTRA_COURSE = "EXTRA_COURSE";
+    public static final String KEY_TAKE_QUIZ = "KEY_TAKE_QUIZ";
+    public static final String KEY_EXAMPLE = "KEY_EXAMPLE";
 
     private static final String TAG = QuizActivity.class.getSimpleName();
 
-    private int paket = -1;
-    private int position = 1;
-    private List<Question> questionList = new ArrayList<>();
-    private Map<Integer, Integer> answer = new HashMap<>();
+    private int mPosition = 1;
+    private List<Question> mQuestionList = new ArrayList<>();
+    private Map<Integer, Integer> mAnswer = new HashMap<>();
+
+    private QuizViewModel mViewModel;
+    private boolean isTakeQuiz = true;
 
     @BindView(R.id.tv_name) TextView tvName;
     @BindView(R.id.tv_no) TextView tvNo;
@@ -56,15 +59,15 @@ public class QuizActivity extends AppCompatActivity implements RadioGroup.OnChec
     @BindView(R.id.rg_answer) RadioGroup rgAnswer;
 
     @OnClick(R.id.btn_prev) void btnPrev() {
-        if (position > 1) {
-            position -= 1;
+        if (mPosition > 1) {
+            mPosition -= 1;
             setQuestionAndChoices();
         }
     }
 
     @OnClick(R.id.btn_next) void btnNext() {
-        if (position < questionList.size() - 1) {
-            position += 1;
+        if (mPosition < mQuestionList.size() - 1) {
+            mPosition += 1;
             setQuestionAndChoices();
         }
     }
@@ -80,30 +83,51 @@ public class QuizActivity extends AppCompatActivity implements RadioGroup.OnChec
         setContentView(R.layout.activity_quiz);
         ButterKnife.bind(this);
 
-        if (getIntent() == null) {
+        if (getIntent() != null) {
+            isTakeQuiz = getIntent().getStringExtra(CourseActivity.EXTRA_ACTION_PACKET)
+                    .equals(KEY_TAKE_QUIZ);
+        } else {
             finish();
-            return;
         }
 
-        int extra = getIntent().getIntExtra(EXTRA_COURSE, 0);
-        paket = getIntent().getIntExtra(EXTRA_ID_PACKET, -1);
-        viewModel = new ViewModelProvider(this).get(QuizViewModel.class);
-        viewModel.getQuestions(extra).observe(this, questions -> {
-            questionList.addAll(questions);
+        mViewModel = new ViewModelProvider(this).get(QuizViewModel.class);
+        int idPacket = getIntent().getIntExtra(EXTRA_ID_PACKET, -1);
+        int idCategory = getIntent().getIntExtra(EXTRA_COURSE, 0);
+
+        rgAnswer.setOnCheckedChangeListener(this);
+        mViewModel.scoreModel.setPacket(idPacket);
+        mViewModel.scoreModel.setCategory(idCategory);
+        mViewModel.getQuestions(idCategory).observe(this, questions -> {
+            if (!isTakeQuiz) {
+                List<Question> _questions = new ArrayList<>();
+                for (int i=0; i < 5; i++) {
+                    Random random = new Random();
+                    int range = (questions.size() - 1) + 1;
+                    int x = random.nextInt(range);
+                    _questions.add(questions.get(x));
+                }
+                mQuestionList.addAll(_questions);
+            } else {
+                mViewModel.scoreModel.setQuestions(questions.size());
+                mQuestionList.addAll(questions);
+            }
+
             setQuestionAndChoices();
         });
 
         start();
-        rgAnswer.setOnCheckedChangeListener(this);
     }
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
     }
 
     @SuppressLint("SimpleDateFormat")
     private void start() {
+        if (!isTakeQuiz) {
+            return;
+        }
+
         if (App.getUsername().isEmpty()) {
             createDialog(this, R.layout.dialog_input_name, (dialogView, alertDialog) -> {
                 EditText edtName = dialogView.findViewById(R.id.editTextNama);
@@ -111,7 +135,7 @@ public class QuizActivity extends AppCompatActivity implements RadioGroup.OnChec
                 btnOk.setOnClickListener(view -> {
                     String name = edtName.getText().toString();
                     if (! TextUtils.isEmpty(name)) {
-                        viewModel.savingName(name);
+                        mViewModel.save(name);
                         alertDialog.dismiss();
                         start();
                     } else {
@@ -122,51 +146,56 @@ public class QuizActivity extends AppCompatActivity implements RadioGroup.OnChec
             });
         }
 
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd - MM - yyyy");
         String message = getResources().getString(R.string.info_starting);
-        Timer timer = new Timer(1500000, 1000); // 25 Menit, 1 Detik
+        Timer timer = new Timer(1500000, 1000);
         timer.setOnChangeListener(tvTime::setText);
         timer.setOnFinish(this::done);
         timer.start();
 
+        String datetime = Utils.getDateTime();
         tvName.setText(App.getUsername());
-        tvDate.setText(dateFormat.format(new Date()));
+        tvDate.setText(datetime);
         showMessage(this, message);
     }
 
     private void done() {
-        float point = 100f / questionList.size();
-        float score = 0f;
-        for (Map.Entry<Integer, Integer> entry: answer.entrySet()) {
-            int key = questionList.get(entry.getKey()).getCorrectAnswer();
-            if (entry.getValue().equals(key)) {
-                score += point;
-            }
+        if (!isTakeQuiz) {
+            finish();
+            return;
         }
 
-        Log.i(TAG, "done: point="+ point);
-        Log.i(TAG, "done: score="+ score);
+        mViewModel.save();
+        ScoreModel scoreModel = mViewModel.scoreModel;
 
-        viewModel.menyimpanNilai(score, paket, questionList.get(0).getCategory());
-        finish();
+        createDialog(this, R.layout.dialog_score, (view, dialog) -> {
+            TextView tvName = view.findViewById(R.id.tv_name);
+            TextView tvQuestions = view.findViewById(R.id.tv_questions);
+            TextView tvCorrects = view.findViewById(R.id.tv_corrects);
+            TextView tvDateTime = view.findViewById(R.id.tv_datetime);
+            TextView tvScore = view.findViewById(R.id.tv_score);
+            Button btnClose = view.findViewById(R.id.btn_close);
+
+            tvName.setText(App.getUsername());
+            tvQuestions.setText(String.valueOf(scoreModel.getQuestions()));
+            tvCorrects.setText(String.valueOf(scoreModel.getCorrects()));
+            tvDateTime.setText(scoreModel.getDateTime());
+            tvScore.setText(String.valueOf(scoreModel.getScore()));
+            btnClose.setOnClickListener(v -> finish());
+        });
     }
 
     @SuppressLint("SetTextI18n")
     private void setQuestionAndChoices() {
         new Handler().post(() -> {
-            Question question = questionList.get(position - 1);
-            tvNo.setText(String.valueOf(position));
+            if (isTakeQuiz) {
+                tvNo.setText(String.valueOf(mPosition));
+            }
+
+            Question question = mQuestionList.get(mPosition - 1);
             tvQuestion.setText(question.getQuestion());
 
-            Log.i(TAG, "setQuestionAndChoices: Data ke-"+ (position - 1));
-            Log.i(TAG, "setQuestionAndChoices: No Soal="+ position);
-            Log.i(TAG, "setQuestionAndChoices: Id Soal="+ question.getId());
-            Log.i(TAG, "setQuestionAndChoices: Sudah Dijawab ? "+
-                    answer.containsKey(position));
-
-            if (answer.containsKey(position)) {
-                Log.i(TAG, "setQuestionAndChoices: Jawaban="+ answer.get(position));
-                RadioButton radioButton = (RadioButton) rgAnswer.getChildAt(answer.get(position));
+            if (mAnswer.containsKey(mPosition)) {
+                RadioButton radioButton = (RadioButton) rgAnswer.getChildAt(mAnswer.get(mPosition));
                 radioButton.setChecked(true);
             } else {
                 rgAnswer.clearCheck();
@@ -183,11 +212,8 @@ public class QuizActivity extends AppCompatActivity implements RadioGroup.OnChec
     public void onCheckedChanged(RadioGroup group, int checkedId) {
         for (int i=0; i < group.getChildCount(); i++) {
             if (((RadioButton) group.getChildAt(i)).isChecked()) {
-                Log.i(TAG, "onCheckedChanged: Data Soal ke-"+ position);
-                Log.i(TAG, "onCheckedChanged: Jawaban Yang dipilih="+ i);
-
-                answer.remove(position);
-                answer.put(position, i);
+                mAnswer.remove(mPosition);
+                mAnswer.put(mPosition, i);
             }
         }
     }

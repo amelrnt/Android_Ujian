@@ -18,15 +18,13 @@ import butterknife.ButterKnife;
 import lat.ta.ujianpemrograman.R;
 import lat.ta.ujianpemrograman.ui.quiz.QuizActivity;
 
+import static lat.ta.ujianpemrograman.ui.ActionActivity.EXTRA_ID_PACKET;
 import static lat.ta.ujianpemrograman.utils.Utils.setFullScreen;
 
 public class CourseActivity extends AppCompatActivity implements Adapter.OnBinding<String> {
 
     public static final String EXTRA_ACTION_PACKET = "EXTRA_ACTION_PACKET";
-    public static final String KEY_TAKE_QUIZ = "KEY_TAKE_QUIZ";
-    public static final String KEY_EXAMPLE = "KEY_EXAMPLE";
 
-    private Class mClass;
     private String[] mStrings;
 
     @BindView(R.id.recyclerview) RecyclerView recyclerView;
@@ -38,20 +36,7 @@ public class CourseActivity extends AppCompatActivity implements Adapter.OnBindi
         setContentView(R.layout.activity_course);
         ButterKnife.bind(this);
 
-        if (getIntent() != null) {
-            switch (getIntent().getStringExtra(EXTRA_ACTION_PACKET)) {
-                case KEY_TAKE_QUIZ:
-                    mClass = QuizActivity.class;
-                    break;
-
-                case KEY_EXAMPLE:
-                    mClass = StudyActivity.class;
-                    break;
-
-                default:
-                    finish();
-            }
-        } else {
+        if (getIntent() == null) {
             finish();
         }
 
@@ -74,8 +59,13 @@ public class CourseActivity extends AppCompatActivity implements Adapter.OnBindi
                 position++;
             }
 
-            Intent intent = new Intent(this, mClass);
+            int idPacket = getIntent().getIntExtra(EXTRA_ID_PACKET, 0);
+            String action = getIntent().getStringExtra(EXTRA_ACTION_PACKET);
+            Intent intent = new Intent(this, QuizActivity.class);
             intent.putExtra(QuizActivity.EXTRA_COURSE, position);
+            intent.putExtra(EXTRA_ACTION_PACKET, action);
+            intent.putExtra(EXTRA_ID_PACKET, idPacket);
+
             startActivity(intent);
         });
     }

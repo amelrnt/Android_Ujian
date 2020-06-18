@@ -13,13 +13,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import lat.ta.ujianpemrograman.R;
-import lat.ta.ujianpemrograman.model.Nilai;
+import lat.ta.ujianpemrograman.model.ScoreModel;
 import lat.ta.ujianpemrograman.repository.NilaiRepository;
 
 import static lat.ta.ujianpemrograman.ui.ActionActivity.EXTRA_ID_PACKET;
 import static lat.ta.ujianpemrograman.utils.Utils.setFullScreen;
 
-public class ScoreActivity extends AppCompatActivity implements Adapter.OnBinding<Nilai> {
+public class ScoreActivity extends AppCompatActivity implements Adapter.OnBinding<ScoreModel> {
 
     @BindView(R.id.recyclerview) RecyclerView recyclerView;
 
@@ -34,7 +34,7 @@ public class ScoreActivity extends AppCompatActivity implements Adapter.OnBindin
             finish();
         }
 
-        Adapter<Nilai> adapter = new Adapter<>(this, R.layout.item_nilai, null);
+        Adapter<ScoreModel> adapter = new Adapter<>(this, R.layout.item_nilai, null);
 
         int paket = getIntent().getIntExtra(EXTRA_ID_PACKET, -1);
         NilaiRepository nilaiRepository = new NilaiRepository(this);
@@ -46,12 +46,12 @@ public class ScoreActivity extends AppCompatActivity implements Adapter.OnBindin
 
     @SuppressLint("DefaultLocale")
     @Override
-    public void onBindViewHolder(View itemView, Nilai nilai) {
+    public void onBindViewHolder(View itemView, ScoreModel scoreModel) {
         String[] strings = getResources().getStringArray(R.array.pilihan_pelajaran);
         TextView tvCategory = itemView.findViewById(R.id.tv_category);
-        tvCategory.setText(strings[nilai.getCategory() - 1]);
+        tvCategory.setText(strings[scoreModel.getCategory() - 1]);
 
         TextView tvScore = itemView.findViewById(R.id.tv_score);
-        tvScore.setText(String.format("%.2f", nilai.getNilai()));
+        tvScore.setText(String.format("%.2f", scoreModel.getScore()));
     }
 }

@@ -1,5 +1,6 @@
 package lat.ta.ujianpemrograman.utils;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -16,6 +17,9 @@ import com.google.android.material.snackbar.Snackbar;
 
 import java.net.URL;
 import java.net.URLConnection;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
@@ -104,6 +108,13 @@ public class Utils {
         window.requestFeature(Window.FEATURE_NO_TITLE);
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
+    }
+
+    @SuppressLint("SimpleDateFormat")
+    public static String getDateTime() {
+        Date date = Calendar.getInstance().getTime();
+        return new SimpleDateFormat("dd-MM:yyyy HH:mm:ss")
+                .format(date);
     }
 
     public interface DialogViewBinding {

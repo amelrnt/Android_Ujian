@@ -3,11 +3,11 @@ package lat.ta.ujianpemrograman.database;
 import androidx.room.Database;
 import androidx.room.RoomDatabase;
 
-import lat.ta.ujianpemrograman.model.Nilai;
 import lat.ta.ujianpemrograman.model.Packet;
 import lat.ta.ujianpemrograman.model.Question;
+import lat.ta.ujianpemrograman.model.ScoreModel;
 
-@Database(entities = {Packet.class, Question.class, Nilai.class},
+@Database(entities = {Packet.class, Question.class, ScoreModel.class},
         version = 4, exportSchema = false)
 public abstract class AppDb extends RoomDatabase {
 

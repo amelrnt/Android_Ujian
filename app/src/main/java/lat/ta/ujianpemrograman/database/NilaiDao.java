@@ -8,18 +8,18 @@ import androidx.room.Query;
 
 import java.util.List;
 
-import lat.ta.ujianpemrograman.model.Nilai;
+import lat.ta.ujianpemrograman.model.ScoreModel;
 
 @Dao
 public interface NilaiDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void save(Nilai nilai);
+    void save(ScoreModel scoreModel);
 
     @Query("SELECT * FROM nilai WHERE paket = :paket")
-    List<Nilai> get(int paket);
+    List<ScoreModel> get(int paket);
 
     @Delete
-    void delete(Nilai nilai);
+    void delete(ScoreModel scoreModel);
 
 }
