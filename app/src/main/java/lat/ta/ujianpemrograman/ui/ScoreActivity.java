@@ -53,5 +53,9 @@ public class ScoreActivity extends AppCompatActivity implements Adapter.OnBindin
 
         TextView tvScore = itemView.findViewById(R.id.tv_score);
         tvScore.setText(String.format("%.2f", scoreModel.getScore()));
+
+        itemView.setOnClickListener(view -> {
+            ScoreDialog.display(ScoreActivity.this, scoreModel);
+        });
     }
 }

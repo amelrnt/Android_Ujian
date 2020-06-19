@@ -3,9 +3,6 @@ package lat.ta.ujianpemrograman.ui.quiz;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Handler;
-import android.text.TextUtils;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -27,14 +24,12 @@ import lat.ta.ujianpemrograman.App;
 import lat.ta.ujianpemrograman.R;
 import lat.ta.ujianpemrograman.model.Question;
 import lat.ta.ujianpemrograman.model.ScoreModel;
+import lat.ta.ujianpemrograman.ui.ActionActivity;
 import lat.ta.ujianpemrograman.ui.CourseActivity;
+import lat.ta.ujianpemrograman.ui.InputNameDialog;
+import lat.ta.ujianpemrograman.ui.ScoreDialog;
 import lat.ta.ujianpemrograman.utils.Timer;
 import lat.ta.ujianpemrograman.utils.Utils;
-
-import static lat.ta.ujianpemrograman.ui.ActionActivity.EXTRA_ID_PACKET;
-import static lat.ta.ujianpemrograman.utils.Utils.createDialog;
-import static lat.ta.ujianpemrograman.utils.Utils.setFullScreen;
-import static lat.ta.ujianpemrograman.utils.Utils.showMessage;
 
 public class QuizActivity extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener {
 
@@ -79,7 +74,7 @@ public class QuizActivity extends AppCompatActivity implements RadioGroup.OnChec
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setFullScreen(getWindow());
+        Utils.setFullScreen(getWindow());
         setContentView(R.layout.activity_quiz);
         ButterKnife.bind(this);
 
@@ -91,7 +86,7 @@ public class QuizActivity extends AppCompatActivity implements RadioGroup.OnChec
         }
 
         mViewModel = new ViewModelProvider(this).get(QuizViewModel.class);
-        int idPacket = getIntent().getIntExtra(EXTRA_ID_PACKET, -1);
+        int idPacket = getIntent().getIntExtra(ActionActivity.EXTRA_ID_PACKET, -1);
         int idCategory = getIntent().getIntExtra(EXTRA_COURSE, 0);
 
         rgAnswer.setOnCheckedChangeListener(this);
@@ -100,7 +95,6 @@ public class QuizActivity extends AppCompatActivity implements RadioGroup.OnChec
         mViewModel.getQuestions(idCategory).observe(this, questions -> {
             if (!isTakeQuiz) {
                 tvNo.setText("Contoh Soal");
-
                 List<Question> _questions = new ArrayList<>();
                 for (int i=0; i < 5; i++) {
                     Random random = new Random();
@@ -131,24 +125,9 @@ public class QuizActivity extends AppCompatActivity implements RadioGroup.OnChec
         }
 
         if (App.getUsername().isEmpty()) {
-            createDialog(this, R.layout.dialog_input_name, (dialogView, alertDialog) -> {
-                EditText edtName = dialogView.findViewById(R.id.editTextNama);
-                Button btnOk =  dialogView.findViewById(R.id.buttonOK);
-                btnOk.setOnClickListener(view -> {
-                    String name = edtName.getText().toString();
-                    if (! TextUtils.isEmpty(name)) {
-                        mViewModel.save(name);
-                        alertDialog.dismiss();
-                        start();
-                    } else {
-                        String emptyInput = getResources().getString(R.string.warning_empty_input);
-                        showMessage(QuizActivity.this, emptyInput);
-                    }
-                });
-            });
+            InputNameDialog.display(this);
         }
 
-        String message = getResources().getString(R.string.info_starting);
         Timer timer = new Timer(1500000, 1000);
         timer.setOnChangeListener(tvTime::setText);
         timer.setOnFinish(this::done);
@@ -157,33 +136,16 @@ public class QuizActivity extends AppCompatActivity implements RadioGroup.OnChec
         String datetime = Utils.getDateTime();
         tvName.setText(App.getUsername());
         tvDate.setText(datetime);
-        showMessage(this, message);
     }
 
     private void done() {
-        if (!isTakeQuiz) {
+        if (isTakeQuiz) {
+            mViewModel.save();
+            ScoreModel scoreModel = mViewModel.scoreModel;
+            ScoreDialog.display(this, scoreModel, false);
+        } else {
             finish();
-            return;
         }
-
-        mViewModel.save();
-        ScoreModel scoreModel = mViewModel.scoreModel;
-
-        createDialog(this, R.layout.dialog_score, (view, dialog) -> {
-            TextView tvName = view.findViewById(R.id.tv_name);
-            TextView tvQuestions = view.findViewById(R.id.tv_questions);
-            TextView tvCorrects = view.findViewById(R.id.tv_corrects);
-            TextView tvDateTime = view.findViewById(R.id.tv_datetime);
-            TextView tvScore = view.findViewById(R.id.tv_score);
-            Button btnClose = view.findViewById(R.id.btn_close);
-
-            tvName.setText(App.getUsername());
-            tvQuestions.setText(String.valueOf(scoreModel.getQuestions()));
-            tvCorrects.setText(String.valueOf(scoreModel.getCorrects()));
-            tvDateTime.setText(scoreModel.getDateTime());
-            tvScore.setText(String.valueOf(scoreModel.getScore()));
-            btnClose.setOnClickListener(v -> finish());
-        });
     }
 
     @SuppressLint("SetTextI18n")
