@@ -9,7 +9,6 @@ import androidx.lifecycle.LiveData;
 import java.util.List;
 import java.util.Map;
 
-import lat.ta.ujianpemrograman.App;
 import lat.ta.ujianpemrograman.model.Question;
 import lat.ta.ujianpemrograman.model.ScoreModel;
 import lat.ta.ujianpemrograman.repository.NilaiRepository;
@@ -30,25 +29,8 @@ public class QuizViewModel extends AndroidViewModel {
         scoreModel = new ScoreModel();
     }
 
-    void save() {
+    void save(List<Question> mQuestionList, Map<Integer, Integer> mAnswer) {
         String datetime = Utils.getDateTime();
-        scoreModel.setDateTime(datetime);
-        nilaiRepository.save(scoreModel);
-    }
-
-    void save(int questions, int... ids) {
-
-    }
-
-    void save(String name) {
-        App.setSharedPreferences(App.KEY_USERNAME, name);
-    }
-
-    LiveData<List<Question>> getQuestions(int course) {
-        return questionRepository.getAll(course);
-    }
-
-    void calcCorrectAnswer(List<Question> mQuestionList, Map<Integer, Integer> mAnswer) {
         int result = 0;
         for (Map.Entry<Integer, Integer> entry: mAnswer.entrySet()) {
             int key = mQuestionList.get(entry.getKey()).getCorrectAnswer();
@@ -57,6 +39,12 @@ public class QuizViewModel extends AndroidViewModel {
             }
         }
 
+        scoreModel.setDateTime(datetime);
         scoreModel.setCorrects(result);
+        nilaiRepository.save(scoreModel);
+    }
+
+    LiveData<List<Question>> getQuestions(int course, boolean isRandom) {
+        return questionRepository.get(course, !isRandom);
     }
 }

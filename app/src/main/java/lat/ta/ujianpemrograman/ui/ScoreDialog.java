@@ -1,13 +1,14 @@
 package lat.ta.ujianpemrograman.ui;
 
+import android.app.Activity;
 import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 
 import lat.ta.ujianpemrograman.App;
 import lat.ta.ujianpemrograman.R;
@@ -15,6 +16,7 @@ import lat.ta.ujianpemrograman.model.ScoreModel;
 
 public class ScoreDialog extends AlertDialog.Builder {
 
+    private Context mContext;
     private boolean mCancelable;
     private ScoreModel mScoreModel;
     private AlertDialog mAlertDialog;
@@ -35,9 +37,11 @@ public class ScoreDialog extends AlertDialog.Builder {
     private ScoreDialog(@NonNull Context context, ScoreModel scoreModel, boolean cancelable) {
         super(context);
 
+        mContext = context;
         mCancelable = cancelable;
         mScoreModel = scoreModel;
-        setView(R.layout.dialog_score);
+        View view = LayoutInflater.from(context).inflate(R.layout.dialog_score, null);
+        setView(view);
     }
 
     private void setAlertDialog(AlertDialog alertDialog) {
@@ -62,7 +66,7 @@ public class ScoreDialog extends AlertDialog.Builder {
             if (mCancelable) {
                 mAlertDialog.dismiss();
             } else {
-                ((AppCompatActivity) getContext()).finish();
+                ((Activity) mContext).finish();
             }
         });
 
