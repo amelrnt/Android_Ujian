@@ -29,11 +29,11 @@ public class QuestionRepository extends Repository<Question> {
         dao = database.getQuestionDao();
     }
 
-    public LiveData<List<Question>> get(int course, boolean random) {
+    public LiveData<List<Question>> get(int course, int packet, boolean random) {
         MutableLiveData<List<Question>> liveData = new MutableLiveData<>();
         executor.submit(() -> {
-            List<Question> questions = dao.get(course);
-            if (random) {
+            List<Question> questions = dao.get(course, packet);
+            if (random && !questions.isEmpty()) {
                 List<Question> _questions = new ArrayList<>();
                 for (int i=0; i < 5; i++) {
                     Random nRandom = new Random();

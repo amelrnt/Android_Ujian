@@ -33,7 +33,7 @@ public class QuizViewModel extends AndroidViewModel {
         String datetime = Utils.getDateTime();
         int result = 0;
         for (Map.Entry<Integer, Integer> entry: mAnswer.entrySet()) {
-            int key = mQuestionList.get(entry.getKey()).getCorrectAnswer();
+            int key = mQuestionList.get(entry.getKey() - 1).getCorrectAnswer();
             if (entry.getValue().equals(key)) {
                 result++;
             }
@@ -44,7 +44,7 @@ public class QuizViewModel extends AndroidViewModel {
         nilaiRepository.save(scoreModel);
     }
 
-    LiveData<List<Question>> getQuestions(int course, boolean isRandom) {
-        return questionRepository.get(course, !isRandom);
+    LiveData<List<Question>> getQuestions(boolean isRandom) {
+        return questionRepository.get(scoreModel.getCategory(), scoreModel.getPacket(), !isRandom);
     }
 }

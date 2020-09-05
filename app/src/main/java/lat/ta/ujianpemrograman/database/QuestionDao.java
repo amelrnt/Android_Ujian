@@ -20,6 +20,9 @@ public interface QuestionDao {
     @Query("SELECT * FROM tbl_soal WHERE kategory = :category")
     List<Question> get(int category);
 
+    @Query("SELECT * FROM tbl_soal WHERE kategory = :category AND paket = :packet")
+    List<Question> get(int category, int packet);
+
     @Query("DELETE FROM tbl_soal")
     void clear();
 

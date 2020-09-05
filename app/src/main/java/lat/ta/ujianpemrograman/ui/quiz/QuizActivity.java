@@ -6,6 +6,7 @@ import android.os.Handler;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
@@ -92,20 +93,33 @@ public class QuizActivity extends AppCompatActivity implements RadioGroup.OnChec
         rgAnswer.setOnCheckedChangeListener(this);
         mViewModel.scoreModel.setPacket(idPacket);
         mViewModel.scoreModel.setCategory(idCategory);
-        mViewModel.getQuestions(idCategory, isTakeQuiz).observe(this, questions -> {
-            mViewModel.scoreModel.setQuestions(questions.size());
-            mQuestionList.addAll(questions);
-            setQuestionAndChoices();
+        mViewModel.getQuestions(isTakeQuiz).observe(this, questions -> {
+            if (questions.isEmpty()) {
+                String message = "Course Not Found";
+                Toast.makeText(QuizActivity.this, message, Toast.LENGTH_SHORT).show();
+                finish();
+            } else {
+                mViewModel.scoreModel.setQuestions(questions.size());
+                mQuestionList.addAll(questions);
+                setQuestionAndChoices();
+            }
         });
     }
 
     @Override
     public void onBackPressed() {
+        if (!isTakeQuiz) {
+            finish();
+            return;
+        }
+
         String title = "PERINGATAN";
         String message = "Apakah Anda ingin Keluar dengan menyimpan quiz ini ?";
         String positiveBtn = "Ya";
         String negativeBtn = "Tidak";
-        new AlertDialog.Builder(this).setTitle(title).setMessage(message)
+        new AlertDialog.Builder(this, R.style.AppThemeRedAccent)
+                .setTitle(title)
+                .setMessage(message)
                 .setPositiveButton(positiveBtn, (dialog, which) -> done())
                 .setNegativeButton(negativeBtn, ((dialog, which) -> finish()))
                 .create()
